@@ -1,0 +1,1560 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gauravik Jewellery - Adorn Your Beauty</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;400;500;600;700&display=swap">
+    <link rel="stylesheet" href="https://fonts.cdnfonts.com/css/the-seasons">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.cdnfonts.com/css/the-seasons');
+        
+        body {
+            font-family: 'Josefin Sans', sans-serif;
+            background-color: #F2F2F2;
+            color: #000000;
+            scroll-behavior: smooth;
+        }
+        
+        .seasons-font {
+            font-family: 'The Seasons', sans-serif;
+        }
+        
+        .navbar {
+            transition: all 0.3s ease;
+            background-color: rgba(242, 242, 242, 0.9);
+        }
+        
+        .navbar.scrolled {
+            background-color: #F2F2F2;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .nav-link {
+            position: relative;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -2px;
+            left: 0;
+            background-color: #000;
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        .hero-gradient {
+            background: linear-gradient(135deg, #F2F2F2 0%, #EAE4D5 100%);
+        }
+        
+        .product-card:hover .product-image {
+            transform: scale(1.05);
+        }
+        
+        .cart-drawer {
+            transform: translateX(100%);
+            transition: transform 0.3s ease-out;
+        }
+        
+        .cart-drawer.open {
+            transform: translateX(0);
+        }
+        
+        .cart-badge {
+            top: -8px;
+            right: -8px;
+        }
+        
+        .btn-pulse:hover {
+            animation: pulse 1.5s infinite;
+        }
+        
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+        
+        .fade-in {
+            opacity: 0;
+            animation: fadeIn 1s forwards;
+        }
+        
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+            }
+        }
+        
+        .slide-in-left {
+            animation: slideInLeft 1s forwards;
+        }
+        
+        @keyframes slideInLeft {
+            from {
+                transform: translateX(-50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+        
+        .slide-in-right {
+            animation: slideInRight 1s forwards;
+        }
+        
+        @keyframes slideInRight {
+            from {
+                transform: translateX(50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+        
+        .zoom-in {
+            animation: zoomIn 1s forwards;
+        }
+        
+        @keyframes zoomIn {
+            from {
+                transform: scale(0.95);
+                opacity: 0;
+            }
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+        
+        .fade-up {
+            animation: fadeUp 1s forwards;
+        }
+        
+        @keyframes fadeUp {
+            from {
+                transform: translateY(20px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+        
+        .social-icon:hover {
+            transform: translateY(-5px);
+            filter: drop-shadow(0 5px 5px rgba(0, 0, 0, 0.1));
+        }
+        
+        .quick-view {
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .product-card:hover .quick-view {
+            opacity: 1;
+        }
+        
+        .add-to-cart {
+            transition: transform 0.2s ease;
+        }
+        
+        .add-to-cart:hover {
+            transform: translateY(-2px);
+        }
+        
+        .add-to-cart:active {
+            transform: translateY(0);
+        }
+        
+        .loading-spinner {
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            from {
+                transform: rotate(0deg);
+            }
+            to {
+                transform: rotate(360deg);
+            }
+        }
+        
+        /* Custom animations for enhanced About section */
+        .animate-gradient {
+            background-size: 200% 200%;
+            animation: gradientShift 3s ease infinite;
+        }
+        
+        @keyframes gradientShift {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+        
+        .animate-shimmer {
+            background-size: 200% 100%;
+            animation: shimmer 2s ease-in-out infinite;
+        }
+        
+        @keyframes shimmer {
+            0% {
+                background-position: -200% 0;
+            }
+            100% {
+                background-position: 200% 0;
+            }
+        }
+        
+        /* Enhanced hover effects */
+        .hover\:shadow-3xl:hover {
+            box-shadow: 0 35px 60px -12px rgba(0, 0, 0, 0.25);
+        }
+        
+        /* Floating animation for decorative elements */
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+        
+        .animate-float {
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        /* Enhanced up and down animations */
+        @keyframes bounceUpDown {
+            0%, 100% { transform: translateY(0px); }
+            25% { transform: translateY(-15px); }
+            50% { transform: translateY(-8px); }
+            75% { transform: translateY(-20px); }
+        }
+        
+        .animate-bounce-slow {
+            animation: bounceUpDown 4s ease-in-out infinite;
+        }
+        
+        @keyframes pulseFloat {
+            0%, 100% { transform: translateY(0px) scale(1); opacity: 0.4; }
+            50% { transform: translateY(-12px) scale(1.2); opacity: 0.8; }
+        }
+        
+        .animate-pulse-float {
+            animation: pulseFloat 3s ease-in-out infinite;
+        }
+        
+        @keyframes floatUpDown {
+            0%, 100% { transform: translateY(0px); }
+            33% { transform: translateY(-18px); }
+            66% { transform: translateY(-5px); }
+        }
+        
+        .animate-float-up-down {
+            animation: floatUpDown 5s ease-in-out infinite;
+        }
+        
+        /* Typewriter animation */
+        .typewriter {
+            overflow: hidden;
+            border-right: 3px solid #B6B09F;
+            white-space: nowrap;
+            margin: 0 auto;
+            animation: typing 4s steps(40, end), blink-caret 0.75s step-end infinite;
+        }
+        
+        @keyframes typing {
+            from { width: 0; }
+            to { width: 100%; }
+        }
+        
+        @keyframes blink-caret {
+            from, to { border-color: transparent; }
+            50% { border-color: #B6B09F; }
+        }
+        
+        /* Jewelry particle animations */
+        .jewelry-particle {
+            position: absolute;
+            pointer-events: none;
+            z-index: 1;
+        }
+        
+        .diamond-particle {
+            width: 0;
+            height: 0;
+            border-left: 8px solid transparent;
+            border-right: 8px solid transparent;
+            border-bottom: 12px solid #B6B09F;
+            position: relative;
+            transform: rotate(45deg);
+        }
+        
+        .diamond-particle::after {
+            content: '';
+            position: absolute;
+            left: -8px;
+            top: 12px;
+            width: 0;
+            height: 0;
+            border-left: 8px solid transparent;
+            border-right: 8px solid transparent;
+            border-top: 8px solid #B6B09F;
+        }
+        
+        .gem-particle {
+            width: 12px;
+            height: 16px;
+            background: linear-gradient(45deg, #B6B09F, #EAE4D5);
+            border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+            box-shadow: 0 0 8px rgba(182, 176, 159, 0.5);
+        }
+        
+        .sparkle-particle {
+            width: 8px;
+            height: 8px;
+            background: #B6B09F;
+            border-radius: 50%;
+            box-shadow: 0 0 12px #B6B09F;
+        }
+        
+        @keyframes floatAcross {
+            0% {
+                transform: translateX(-100px) translateY(0px) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateX(calc(100vw + 100px)) translateY(-50px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+        
+        @keyframes floatDiagonal {
+            0% {
+                transform: translateX(-50px) translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateX(calc(100vw + 50px)) translateY(-100px) rotate(180deg);
+                opacity: 0;
+            }
+        }
+        
+        @keyframes sparkleFloat {
+            0%, 100% {
+                transform: translateY(0px) scale(1);
+                opacity: 0.3;
+            }
+            50% {
+                transform: translateY(-20px) scale(1.2);
+                opacity: 1;
+            }
+        }
+        
+        .animate-float-across {
+            animation: floatAcross 15s linear infinite;
+        }
+        
+        .animate-float-diagonal {
+            animation: floatDiagonal 20s linear infinite;
+        }
+        
+        .animate-sparkle-float {
+            animation: sparkleFloat 4s ease-in-out infinite;
+        }
+        
+        .backdrop-blur {
+            backdrop-filter: blur(5px);
+        }
+    </style>
+</head>
+<body class="relative">
+    <!-- Loading Spinner -->
+    <div id="loading" class="fixed inset-0 bg-white bg-opacity-90 flex items-center justify-center z-50">
+        <div class="loading-spinner w-16 h-16 border-4 border-t-[#B6B09F] border-r-[#B6B09F] border-b-[#EAE4D5] border-l-[#EAE4D5] rounded-full"></div>
+    </div>
+
+    <!-- Scroll to Top Button -->
+    <button id="scrollToTop" class="fixed bottom-8 right-8 bg-[#B6B09F] text-white w-12 h-12 rounded-full shadow-lg hidden items-center justify-center z-40">
+        <i class="fas fa-arrow-up text-xl"></i>
+    </button>
+
+    <!-- Navbar -->
+    <nav id="navbar" class="navbar fixed top-0 left-0 w-full z-40 py-4 px-6">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <!-- Mobile Menu Button -->
+            <button id="mobileMenuButton" class="lg:hidden text-black focus:outline-none">
+                <i class="fas fa-bars text-2xl"></i>
+            </button>
+            
+            <!-- Logo -->
+            <div class="seasons-font text-3xl font-light tracking-widest mx-auto lg:mx-0">
+                <a href="#" class="text-black">GAURAVIK</a>
+            </div>
+            
+            <!-- Desktop Menu -->
+            <div class="hidden lg:flex space-x-2">
+                <a href="#home" class="nav-link group relative px-6 py-3 text-black hover:text-[#B6B09F] transition-all duration-300 rounded-xl hover:bg-white/80 hover:shadow-lg hover:scale-105">
+                    <span class="relative z-10 font-medium tracking-wide">Home</span>
+                    <div class="absolute inset-0 bg-gradient-to-r from-[#B6B09F]/10 to-[#B6B09F]/5 rounded-xl opacity-0 group-hover:opacity-100 transition-all duration-300 transform scale-95 group-hover:scale-100"></div>
+                    <div class="absolute bottom-0 left-1/2 w-0 h-0.5 bg-gradient-to-r from-[#B6B09F] to-[#B6B09F]/60 group-hover:w-full group-hover:left-0 transition-all duration-300 rounded-full"></div>
+                </a>
+                <a href="#about" class="nav-link group relative px-6 py-3 text-black hover:text-[#B6B09F] transition-all duration-300 rounded-xl hover:bg-white/80 hover:shadow-lg hover:scale-105">
+                    <span class="relative z-10 font-medium tracking-wide">About</span>
+                    <div class="absolute inset-0 bg-gradient-to-r from-[#B6B09F]/10 to-[#B6B09F]/5 rounded-xl opacity-0 group-hover:opacity-100 transition-all duration-300 transform scale-95 group-hover:scale-100"></div>
+                    <div class="absolute bottom-0 left-1/2 w-0 h-0.5 bg-gradient-to-r from-[#B6B09F] to-[#B6B09F]/60 group-hover:w-full group-hover:left-0 transition-all duration-300 rounded-full"></div>
+                </a>
+                <a href="#products" class="nav-link group relative px-6 py-3 text-black hover:text-[#B6B09F] transition-all duration-300 rounded-xl hover:bg-white/80 hover:shadow-lg hover:scale-105">
+                    <span class="relative z-10 font-medium tracking-wide">Products</span>
+                    <div class="absolute inset-0 bg-gradient-to-r from-[#B6B09F]/10 to-[#B6B09F]/5 rounded-xl opacity-0 group-hover:opacity-100 transition-all duration-300 transform scale-95 group-hover:scale-100"></div>
+                    <div class="absolute bottom-0 left-1/2 w-0 h-0.5 bg-gradient-to-r from-[#B6B09F] to-[#B6B09F]/60 group-hover:w-full group-hover:left-0 transition-all duration-300 rounded-full"></div>
+                </a>
+                <a href="#social" class="nav-link group relative px-6 py-3 text-black hover:text-[#B6B09F] transition-all duration-300 rounded-xl hover:bg-white/80 hover:shadow-lg hover:scale-105">
+                    <span class="relative z-10 font-medium tracking-wide">Social</span>
+                    <div class="absolute inset-0 bg-gradient-to-r from-[#B6B09F]/10 to-[#B6B09F]/5 rounded-xl opacity-0 group-hover:opacity-100 transition-all duration-300 transform scale-95 group-hover:scale-100"></div>
+                    <div class="absolute bottom-0 left-1/2 w-0 h-0.5 bg-gradient-to-r from-[#B6B09F] to-[#B6B09F]/60 group-hover:w-full group-hover:left-0 transition-all duration-300 rounded-full"></div>
+                </a>
+            </div>
+            
+            <!-- Cart Icon -->
+            <div class="relative">
+                <button id="cartButton" class="text-black focus:outline-none relative">
+                    <i class="fas fa-shopping-bag text-2xl"></i>
+                    <span id="cartBadge" class="cart-badge absolute bg-[#B6B09F] text-white text-xs w-5 h-5 flex items-center justify-center rounded-full hidden">0</span>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu Overlay -->
+        <div id="mobileMenuOverlay" class="lg:hidden fixed inset-0 bg-black/50 backdrop-blur-sm z-40 opacity-0 invisible transition-all duration-300"></div>
+        
+        <!-- Mobile Menu Sidebar -->
+        <div id="mobileMenu" class="lg:hidden fixed top-0 left-0 h-full w-80 max-w-[85vw] bg-gradient-to-br from-white via-[#F2F2F2] to-white shadow-2xl z-50 transform -translate-x-full transition-transform duration-300 ease-out">
+            <!-- Header Section -->
+            <div class="relative p-6 border-b border-[#B6B09F]/20">
+                <!-- Close Button -->
+                <button id="closeMobileMenu" class="absolute top-4 right-4 w-10 h-10 flex items-center justify-center bg-[#B6B09F]/10 hover:bg-[#B6B09F]/20 rounded-full transition-all duration-300 hover:scale-110">
+                    <svg class="w-5 h-5 text-[#B6B09F]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                    </svg>
+                </button>
+                
+                <!-- Brand Logo -->
+                 <div class="flex items-center space-x-3">
+                     <div class="w-12 h-12 rounded-full overflow-hidden shadow-lg">
+                         <img src="Images/aabb.jpg" alt="GAURAVIK Logo" class="w-full h-full object-cover">
+                     </div>
+                     <div>
+                         <h3 class="seasons-font text-xl font-bold text-gray-800">GAURAVIK</h3>
+                         <p class="text-sm text-gray-600">Jewelry Collection</p>
+                     </div>
+                 </div>
+                
+                <!-- Decorative line -->
+                <div class="absolute bottom-0 left-6 right-6 h-px bg-gradient-to-r from-transparent via-[#B6B09F]/30 to-transparent"></div>
+            </div>
+            
+            <!-- Navigation Section -->
+            <div class="flex-1 p-6 overflow-y-auto">
+                <!-- Decorative background elements -->
+                <div class="absolute top-32 right-4 w-16 h-16 bg-[#B6B09F]/5 rounded-full blur-xl animate-pulse"></div>
+                <div class="absolute top-64 left-4 w-12 h-12 bg-[#B6B09F]/10 rounded-full blur-lg animate-pulse" style="animation-delay: 1s;"></div>
+                
+                <nav class="space-y-3 relative z-10">
+                    <a href="#home" class="nav-link group flex items-center space-x-4 text-gray-800 hover:text-[#B6B09F] py-4 px-4 rounded-2xl hover:bg-white/80 transition-all duration-300 hover:shadow-lg hover:transform hover:scale-105">
+                        <div class="w-12 h-12 flex items-center justify-center bg-gradient-to-br from-[#B6B09F]/10 to-[#B6B09F]/5 group-hover:from-[#B6B09F]/20 group-hover:to-[#B6B09F]/10 rounded-xl transition-all duration-300 group-hover:scale-110 group-hover:rotate-3">
+                            <svg class="w-6 h-6 text-[#B6B09F]" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"/>
+                            </svg>
+                        </div>
+                        <div class="flex-1">
+                            <span class="font-semibold text-lg group-hover:text-[#B6B09F] transition-colors duration-300">Home</span>
+                            <p class="text-sm text-gray-500 group-hover:text-gray-600">Welcome page</p>
+                        </div>
+                        <div class="opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-x-2 group-hover:translate-x-0">
+                            <svg class="w-5 h-5 text-[#B6B09F]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                            </svg>
+                        </div>
+                    </a>
+                    
+                    <a href="#about" class="nav-link group flex items-center space-x-4 text-gray-800 hover:text-[#B6B09F] py-4 px-4 rounded-2xl hover:bg-white/80 transition-all duration-300 hover:shadow-lg hover:transform hover:scale-105">
+                        <div class="w-12 h-12 flex items-center justify-center bg-gradient-to-br from-[#B6B09F]/10 to-[#B6B09F]/5 group-hover:from-[#B6B09F]/20 group-hover:to-[#B6B09F]/10 rounded-xl transition-all duration-300 group-hover:scale-110 group-hover:rotate-3">
+                            <svg class="w-6 h-6 text-[#B6B09F]" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"/>
+                            </svg>
+                        </div>
+                        <div class="flex-1">
+                            <span class="font-semibold text-lg group-hover:text-[#B6B09F] transition-colors duration-300">About</span>
+                            <p class="text-sm text-gray-500 group-hover:text-gray-600">Our story</p>
+                        </div>
+                        <div class="opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-x-2 group-hover:translate-x-0">
+                            <svg class="w-5 h-5 text-[#B6B09F]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                            </svg>
+                        </div>
+                    </a>
+                    
+                    <a href="#products" class="nav-link group flex items-center space-x-4 text-gray-800 hover:text-[#B6B09F] py-4 px-4 rounded-2xl hover:bg-white/80 transition-all duration-300 hover:shadow-lg hover:transform hover:scale-105">
+                        <div class="w-12 h-12 flex items-center justify-center bg-gradient-to-br from-[#B6B09F]/10 to-[#B6B09F]/5 group-hover:from-[#B6B09F]/20 group-hover:to-[#B6B09F]/10 rounded-xl transition-all duration-300 group-hover:scale-110 group-hover:rotate-3">
+                            <svg class="w-6 h-6 text-[#B6B09F]" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M3 4a1 1 0 011-1h12a1 1 0 011 1v2a1 1 0 01-1 1H4a1 1 0 01-1-1V4zM3 10a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H4a1 1 0 01-1-1v-6zM14 9a1 1 0 00-1 1v6a1 1 0 001 1h2a1 1 0 001-1v-6a1 1 0 00-1-1h-2z"/>
+                            </svg>
+                        </div>
+                        <div class="flex-1">
+                            <span class="font-semibold text-lg group-hover:text-[#B6B09F] transition-colors duration-300">Products</span>
+                            <p class="text-sm text-gray-500 group-hover:text-gray-600">Our collections</p>
+                        </div>
+                        <div class="opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-x-2 group-hover:translate-x-0">
+                            <svg class="w-5 h-5 text-[#B6B09F]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                            </svg>
+                        </div>
+                    </a>
+                    
+                    <a href="#social" class="nav-link group flex items-center space-x-4 text-gray-800 hover:text-[#B6B09F] py-4 px-4 rounded-2xl hover:bg-white/80 transition-all duration-300 hover:shadow-lg hover:transform hover:scale-105">
+                        <div class="w-12 h-12 flex items-center justify-center bg-gradient-to-br from-[#B6B09F]/10 to-[#B6B09F]/5 group-hover:from-[#B6B09F]/20 group-hover:to-[#B6B09F]/10 rounded-xl transition-all duration-300 group-hover:scale-110 group-hover:rotate-3">
+                            <svg class="w-6 h-6 text-[#B6B09F]" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clip-rule="evenodd"/>
+                            </svg>
+                        </div>
+                        <div class="flex-1">
+                            <span class="font-semibold text-lg group-hover:text-[#B6B09F] transition-colors duration-300">Social</span>
+                            <p class="text-sm text-gray-500 group-hover:text-gray-600">Connect with us</p>
+                        </div>
+                        <div class="opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-x-2 group-hover:translate-x-0">
+                            <svg class="w-5 h-5 text-[#B6B09F]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                            </svg>
+                        </div>
+                    </a>
+                </nav>
+            </div>
+            
+            <!-- Footer Section -->
+            <div class="p-6 border-t border-[#B6B09F]/20">
+                <div class="text-center">
+                    <p class="text-sm text-gray-600 mb-2">Follow us on social media</p>
+                    <div class="flex justify-center space-x-4">
+                        <a href="https://www.facebook.com/profile.php?id=61574443553150" class="w-10 h-10 bg-[#B6B09F]/10 hover:bg-[#4267B2]/20 rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110">
+                            <i class="fab fa-facebook text-[#4267B2]"></i>
+                        </a>
+                        <a href="https://www.instagram.com/gauravik_collection" class="w-10 h-10 bg-[#B6B09F]/10 hover:bg-[#E1306C]/20 rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110">
+                            <i class="fab fa-instagram text-[#E1306C]"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Cart Drawer -->
+    <div id="cartDrawer" class="cart-drawer fixed top-0 right-0 h-full w-full sm:w-96 bg-white shadow-lg z-50 overflow-y-auto">
+        <div class="p-6">
+            <div class="flex justify-between items-center mb-6">
+                <h3 class="seasons-font text-2xl">Your Cart</h3>
+                <button id="closeCart" class="text-black focus:outline-none">
+                    <i class="fas fa-times text-xl"></i>
+                </button>
+            </div>
+            
+            <div id="cartItems" class="space-y-4">
+                <!-- Cart items will be added here dynamically -->
+                <p class="text-center py-8" id="emptyCartMessage">Your cart is empty</p>
+            </div>
+            
+            <div class="border-t border-gray-200 mt-6 pt-6">
+                <div class="flex justify-between mb-4">
+                    <span class="font-semibold">Subtotal</span>
+                    <span id="cartSubtotal">RIA 0.00</span>
+                </div>
+                <button id="checkoutButton" class="w-full bg-[#B6B09F] text-white py-3 px-6 rounded hover:bg-opacity-90 transition duration-300 hidden">
+                    Checkout
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-gradient min-h-screen flex items-center pt-20 relative overflow-hidden">
+        <!-- Jewelry Particles Background -->
+        <div class="absolute inset-0 pointer-events-none">
+            <!-- Diamond particles -->
+            <div class="jewelry-particle diamond-particle animate-float-across" style="top: 20%; animation-delay: 0s;"></div>
+            <div class="jewelry-particle diamond-particle animate-float-across" style="top: 60%; animation-delay: 5s;"></div>
+            <div class="jewelry-particle diamond-particle animate-float-diagonal" style="animation-delay: 8s;"></div>
+            
+            <!-- Gem particles -->
+            <div class="jewelry-particle gem-particle animate-float-across" style="top: 35%; animation-delay: 2s;"></div>
+            <div class="jewelry-particle gem-particle animate-float-across" style="top: 75%; animation-delay: 7s;"></div>
+            <div class="jewelry-particle gem-particle animate-float-diagonal" style="animation-delay: 12s;"></div>
+            
+            <!-- Sparkle particles -->
+            <div class="jewelry-particle sparkle-particle animate-sparkle-float" style="top: 15%; left: 10%; animation-delay: 1s;"></div>
+            <div class="jewelry-particle sparkle-particle animate-sparkle-float" style="top: 45%; left: 80%; animation-delay: 3s;"></div>
+            <div class="jewelry-particle sparkle-particle animate-sparkle-float" style="top: 70%; left: 15%; animation-delay: 6s;"></div>
+            <div class="jewelry-particle sparkle-particle animate-sparkle-float" style="top: 25%; left: 70%; animation-delay: 9s;"></div>
+            <div class="jewelry-particle sparkle-particle animate-float-across" style="top: 50%; animation-delay: 4s;"></div>
+            <div class="jewelry-particle sparkle-particle animate-float-across" style="top: 80%; animation-delay: 10s;"></div>
+        </div>
+        <div class="max-w-7xl mx-auto px-6 py-16 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div class="slide-in-left relative group">
+                <!-- Decorative background elements -->
+                <div class="absolute inset-0 bg-gradient-to-br from-[#B6B09F]/20 via-transparent to-[#B6B09F]/10 rounded-xl blur-2xl transform rotate-1 scale-105 opacity-50 group-hover:opacity-70 transition-opacity duration-500"></div>
+                <div class="absolute -top-4 -left-4 w-24 h-24 bg-gradient-to-br from-[#B6B09F]/30 to-transparent rounded-full blur-xl animate-pulse"></div>
+                <div class="absolute -bottom-4 -right-4 w-32 h-32 bg-gradient-to-tl from-[#B6B09F]/20 to-transparent rounded-full blur-xl animate-pulse" style="animation-delay: 1s;"></div>
+                
+                <!-- Main image container with enhanced styling -->
+                <div class="relative overflow-hidden rounded-xl shadow-2xl transform group-hover:scale-[1.02] transition-all duration-700 ease-out">
+                    <!-- Gradient overlay -->
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10"></div>
+                    
+                    <!-- Decorative corner elements -->
+                    <div class="absolute top-4 left-4 w-8 h-8 border-l-2 border-t-2 border-white/30 z-20"></div>
+                    <div class="absolute top-4 right-4 w-8 h-8 border-r-2 border-t-2 border-white/30 z-20"></div>
+                    <div class="absolute bottom-4 left-4 w-8 h-8 border-l-2 border-b-2 border-white/30 z-20"></div>
+                    <div class="absolute bottom-4 right-4 w-8 h-8 border-r-2 border-b-2 border-white/30 z-20"></div>
+                    
+                    <!-- Main image -->
+                    <img src="Images/bggg.jpg"
+                         alt="Elegant jewelry" 
+                         class="w-full h-auto object-cover transform group-hover:scale-105 transition-transform duration-700 ease-out">
+                    
+                    <!-- Shimmer effect -->
+                    <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-out"></div>
+                </div>
+                
+                <!-- Floating decorative elements with enhanced up-down animations -->
+                <div class="absolute top-1/4 -left-2 w-3 h-3 bg-[#B6B09F]/40 rounded-full animate-bounce-slow"></div>
+                <div class="absolute top-3/4 -right-2 w-2 h-2 bg-[#B6B09F]/60 rounded-full animate-bounce-slow" style="animation-delay: 0.5s;"></div>
+                <div class="absolute bottom-1/3 -left-3 w-4 h-4 bg-[#B6B09F]/30 rounded-full animate-bounce-slow" style="animation-delay: 1.5s;"></div>
+                <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-1 h-1 bg-[#B6B09F]/50 rounded-full animate-pulse-float"></div>
+                <div class="absolute top-1/3 right-1/4 w-2 h-2 bg-[#B6B09F]/35 rounded-full animate-float-up-down" style="animation-delay: 2s;"></div>
+                <div class="absolute bottom-1/4 left-1/3 w-1.5 h-1.5 bg-[#B6B09F]/45 rounded-full animate-float" style="animation-delay: 3s;"></div>
+                
+                <!-- Decorative border glow -->
+                <div class="absolute inset-0 rounded-xl border border-[#B6B09F]/20 group-hover:border-[#B6B09F]/40 transition-colors duration-500"></div>
+            </div>
+            
+            <div class="slide-in-right">
+                <h1 class="seasons-font font-bold text-4xl md:text-5xl lg:text-6xl mb-6 typewriter text-center lg:text-left">Timeless Elegance.<br>Made for You.</h1>
+                <p class="text-lg mb-8 max-w-lg text-center lg:text-left mx-auto lg:mx-0">Curated collections of beauty, tradition, and modern expression. Explore our newest handcrafted pieces.</p>
+                <div class="text-center lg:text-left">
+                    <a href="#products" class="btn-pulse inline-block bg-black text-white py-3 px-8 rounded hover:bg-opacity-90 transition duration-300">
+                        Explore Collection <i class="fas fa-arrow-right ml-2"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 bg-gradient-to-br from-white via-gray-500 to-[#F2F2F2] relative overflow-hidden">
+        <!-- Jewelry Particles Background -->
+        <div class="absolute inset-0 pointer-events-none">
+            <!-- Diamond particles -->
+            <div class="absolute top-20 left-10 w-8 h-8 border-4 border-[#B6B09F]/30 transform rotate-45 animate-floatAcross" style="animation-delay: 0s;"></div>
+            <div class="absolute top-40 right-20 w-6 h-6 border-4 border-gray-600/20 transform rotate-45 animate-floatDiagonal" style="animation-delay: 2s;"></div>
+            <div class="absolute bottom-32 left-1/4 w-10 h-10 border-4 border-[#B6B09F]/25 transform rotate-45 animate-floatAcross" style="animation-delay: 4s;"></div>
+            
+            <!-- Gem particles -->
+            <div class="absolute top-60 right-10 w-8 h-12 bg-gradient-to-b from-[#B6B09F]/40 to-gray-600/30 rounded-full animate-floatDiagonal" style="animation-delay: 1s; box-shadow: 0 0 20px rgba(182, 176, 159, 0.3);"></div>
+            <div class="absolute bottom-20 right-1/3 w-6 h-10 bg-gradient-to-b from-gray-600/30 to-[#B6B09F]/40 rounded-full animate-floatAcross" style="animation-delay: 3s; box-shadow: 0 0 15px rgba(128, 128, 128, 0.2);"></div>
+            
+            <!-- Sparkle particles -->
+            <div class="absolute top-32 left-1/3 w-4 h-4 bg-[#B6B09F]/50 rounded-full animate-sparkleFloat" style="animation-delay: 0.5s; box-shadow: 0 0 10px rgba(182, 176, 159, 0.4);"></div>
+            <div class="absolute bottom-40 left-20 w-6 h-6 bg-gray-600/40 rounded-full animate-sparkleFloat" style="animation-delay: 2.5s; box-shadow: 0 0 12px rgba(128, 128, 128, 0.3);"></div>
+            <div class="absolute top-80 right-1/4 w-3 h-3 bg-[#B6B09F]/60 rounded-full animate-sparkleFloat" style="animation-delay: 4.5s; box-shadow: 0 0 8px rgba(182, 176, 159, 0.5);"></div>
+        </div>
+        
+        <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center relative z-10">
+            <div class="fade-up relative" style="animation-delay: 0.3s;">
+                <!-- Decorative background element -->
+                <div class="absolute -top-8 -left-8 w-32 h-32 bg-gradient-to-br from-[#B6B09F]/20 to-transparent rounded-full blur-xl animate-pulse"></div>
+                
+                <div class="relative z-10 bg-white/80 backdrop-blur-sm rounded-2xl p-8 shadow-xl border border-[#B6B09F]/20 hover:shadow-2xl transition-all duration-500 hover:transform hover:scale-105">
+                    <h2 class="text-center fonr-semibold seasons-font text-4xl md:text-5xl mb-6 relative pb-4 bg-gradient-to-r from-[#B6B09F] via-gray-800 to-[#B6B09F] bg-clip-text text-transparent animate-gradient">
+                        Our Story
+                        <span class="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-16 h-0.5 bg-gradient-to-r from-transparent via-[#B6B09F] to-transparent animate-shimmer"></span>
+                        <!-- Decorative dots -->
+                        <span class="absolute -top-2 left-1/2 transform -translate-x-1/2 flex space-x-1">
+                            <span class="w-1 h-1 bg-[#B6B09F] rounded-full animate-bounce" style="animation-delay: 0s;"></span>
+                            <span class="w-1 h-1 bg-[#B6B09F] rounded-full animate-bounce" style="animation-delay: 0.1s;"></span>
+                            <span class="w-1 h-1 bg-[#B6B09F] rounded-full animate-bounce" style="animation-delay: 0.2s;"></span>
+                        </span>
+                    </h2>
+                    
+                    <div class="space-y-4">
+                        <p class="text-justify text-lg mb-6 max-w-lg leading-relaxed text-gray-700 hover:text-gray-900 transition-colors duration-300">
+                            Founded with passion for elegance, <span class="font-semibold text-[#B6B09F] hover:text-opacity-80 transition-all duration-300">Gauravik Jewellery</span> crafts timeless accessories for the modern individual. Every piece is made with precision, care, and a story behind it.
+                        </p>
+                        
+                        <!-- Stats or highlights -->
+                        <div class="flex flex-wrap justify-center sm:justify-start gap-2 sm:gap-4 mb-6 px-4 sm:px-0">
+                            <div class="flex items-center space-x-2 bg-[#B6B09F]/10 px-3 py-2 sm:py-1 rounded-full hover:bg-[#B6B09F]/20 transition-colors duration-300 flex-shrink-0">
+                                <span class="w-2 h-2 bg-[#B6B09F] rounded-full animate-pulse"></span>
+                                <span class="text-xs sm:text-sm font-medium whitespace-nowrap">Handcrafted</span>
+                            </div>
+                            <div class="flex items-center space-x-2 bg-[#B6B09F]/10 px-3 py-2 sm:py-1 rounded-full hover:bg-[#B6B09F]/20 transition-colors duration-300 flex-shrink-0">
+                                <span class="w-2 h-2 bg-[#B6B09F] rounded-full animate-pulse" style="animation-delay: 0.5s;"></span>
+                                <span class="text-xs sm:text-sm font-medium whitespace-nowrap">Premium Quality</span>
+                            </div>
+                            <div class="flex items-center space-x-2 bg-[#B6B09F]/10 px-3 py-2 sm:py-1 rounded-full hover:bg-[#B6B09F]/20 transition-colors duration-300 flex-shrink-0">
+                                <span class="w-2 h-2 bg-[#B6B09F] rounded-full animate-pulse" style="animation-delay: 1s;"></span>
+                                <span class="text-xs sm:text-sm font-medium whitespace-nowrap">Timeless Design</span>
+                            </div>
+                        </div>
+                        
+                        <p class="seasons-font text-xl italic text-[#B6B09F] hover:scale-105 transition-transform duration-300 cursor-default">— Gauravik</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="zoom-in relative">
+                <!-- Decorative background -->
+                <div class="absolute -top-4 -right-4 w-24 h-24 bg-gradient-to-bl from-[#B6B09F]/30 to-transparent rounded-full blur-lg animate-pulse" style="animation-delay: 1s;"></div>
+                
+                <div class="relative">
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="col-span-2 group">
+                            <div class="relative overflow-hidden rounded-2xl shadow-2xl hover:shadow-3xl transition-all duration-500">
+                                <!-- Overlay gradient -->
+                                <div class="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                                
+                                <!-- Animated border -->
+                                <div class="absolute inset-0 bg-gradient-to-r from-[#B6B09F] via-transparent to-[#B6B09F] opacity-0 group-hover:opacity-100 transition-opacity duration-500 animate-pulse z-20 rounded-2xl" style="padding: 2px;">
+                                    <div class="w-full h-full bg-white rounded-2xl"></div>
+                                </div>
+                                
+                                <img src="Images/aabb.jpg" 
+                                     alt="Jewelry artisan" 
+                                     class="relative z-30 w-full h-64 md:h-96 object-cover rounded-2xl group-hover:scale-110 transition-transform duration-700 ease-out">
+                                
+                                <!-- Floating elements -->
+                                <div class="absolute top-4 right-4 z-40 opacity-0 group-hover:opacity-100 transition-all duration-500 transform translate-x-4 group-hover:translate-x-0">
+                                    <div class="bg-white/90 backdrop-blur-sm rounded-full p-2 shadow-lg">
+                                        <span class="text-[#B6B09F] text-sm font-medium">✨ Crafted with Love</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Floating decorative elements -->
+                    <div class="absolute -bottom-2 -left-2 w-8 h-8 bg-[#B6B09F]/20 rounded-full animate-bounce" style="animation-delay: 2s; animation-duration: 3s;"></div>
+                    <div class="absolute top-1/2 -right-3 w-4 h-4 bg-[#B6B09F]/30 rounded-full animate-bounce" style="animation-delay: 2.5s; animation-duration: 2.5s;"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section id="products" class="py-20 bg-[#F2F2F2] relative overflow-hidden">
+        <!-- Jewelry Particles Background -->
+        <div class="absolute inset-0 pointer-events-none">
+            <!-- Diamond particles -->
+            <div class="absolute top-16 right-16 w-8 h-8 border-4 border-[#B6B09F]/30 transform rotate-45 animate-floatAcross" style="animation-delay: 1s;"></div>
+            <div class="absolute top-80 left-12 w-6 h-6 border-4 border-gray-600/20 transform rotate-45 animate-floatDiagonal" style="animation-delay: 3s;"></div>
+            <div class="absolute bottom-24 right-1/4 w-10 h-10 border-4 border-[#B6B09F]/25 transform rotate-45 animate-floatAcross" style="animation-delay: 5s;"></div>
+            
+            <!-- Gem particles -->
+            <div class="absolute top-40 left-1/4 w-8 h-12 bg-gradient-to-b from-[#B6B09F]/40 to-gray-600/30 rounded-full animate-floatDiagonal" style="animation-delay: 2s; box-shadow: 0 0 20px rgba(182, 176, 159, 0.3);"></div>
+            <div class="absolute bottom-40 left-16 w-6 h-10 bg-gradient-to-b from-gray-600/30 to-[#B6B09F]/40 rounded-full animate-floatAcross" style="animation-delay: 4s; box-shadow: 0 0 15px rgba(128, 128, 128, 0.2);"></div>
+            
+            <!-- Sparkle particles -->
+            <div class="absolute top-24 right-1/3 w-4 h-4 bg-[#B6B09F]/50 rounded-full animate-sparkleFloat" style="animation-delay: 1.5s; box-shadow: 0 0 10px rgba(182, 176, 159, 0.4);"></div>
+            <div class="absolute bottom-60 right-20 w-6 h-6 bg-gray-600/40 rounded-full animate-sparkleFloat" style="animation-delay: 3.5s; box-shadow: 0 0 12px rgba(128, 128, 128, 0.3);"></div>
+            <div class="absolute top-60 left-1/3 w-3 h-3 bg-[#B6B09F]/60 rounded-full animate-sparkleFloat" style="animation-delay: 5.5s; box-shadow: 0 0 8px rgba(182, 176, 159, 0.5);"></div>
+        </div>
+        
+        <div class="max-w-7xl mx-auto px-6 relative z-10">
+            <div class="text-center mb-12 fade-up relative">
+                <!-- Decorative background elements -->
+                <div class="absolute -top-6 left-1/2 transform -translate-x-1/2 w-40 h-40 bg-gradient-to-r from-[#B6B09F]/10 via-transparent to-[#B6B09F]/10 rounded-full blur-3xl animate-pulse"></div>
+                
+                <div class="relative z-10">
+                    <!-- Enhanced heading with gradient and decorative elements -->
+                    <div class="relative inline-block">
+                        <h2 class="seasons-font text-3xl md:text-5xl font-semibold mb-4 bg-gradient-to-r from-[#B6B09F] via-gray-800 to-[#B6B09F] bg-clip-text text-transparent animate-gradient relative">
+                            Our Collections
+                            
+                            <!-- Decorative underline with animation -->
+                            <span class="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-24 h-0.5 bg-gradient-to-r from-transparent via-[#B6B09F] to-transparent animate-shimmer"></span>
+                            
+                            <!-- Side decorative elements -->
+                            <span class="absolute -left-8 top-1/2 transform -translate-y-1/2 w-4 h-4 border border-[#B6B09F]/30 rounded-full animate-pulse" style="animation-delay: 0.5s;"></span>
+                            <span class="absolute -right-8 top-1/2 transform -translate-y-1/2 w-4 h-4 border border-[#B6B09F]/30 rounded-full animate-pulse" style="animation-delay: 1s;"></span>
+                            
+                            <!-- Top decorative dots -->
+                            <div class="absolute -top-6 left-1/2 transform -translate-x-1/2 flex space-x-2">
+                                <span class="w-1.5 h-1.5 bg-[#B6B09F] rounded-full animate-bounce" style="animation-delay: 0s;"></span>
+                                <span class="w-1.5 h-1.5 bg-[#B6B09F] rounded-full animate-bounce" style="animation-delay: 0.2s;"></span>
+                                <span class="w-1.5 h-1.5 bg-[#B6B09F] rounded-full animate-bounce" style="animation-delay: 0.4s;"></span>
+                            </div>
+                        </h2>
+                    </div>
+                    
+                    <!-- Enhanced description with styling -->
+                    <div class="relative">
+                        <p class="max-w-2xl mx-auto text-gray-600 leading-relaxed hover:text-gray-800 transition-colors duration-300">
+                            Handcrafted pieces that celebrate <span class="font-semibold text-[#B6B09F] hover:text-opacity-80 transition-all duration-300">individuality</span> and <span class="font-semibold text-[#B6B09F] hover:text-opacity-80 transition-all duration-300">timeless beauty</span>
+                        </p>
+                        
+                        <!-- Decorative quote marks -->
+                        <span class="absolute -left-4 -top-2 text-[#B6B09F]/30 text-4xl font-serif">"</span>
+                        <span class="absolute -right-4 -bottom-2 text-[#B6B09F]/30 text-4xl font-serif transform rotate-180">"</span>
+                    </div>
+                    
+                    <!-- Floating decorative elements -->
+                    <div class="absolute top-0 left-1/4 w-2 h-2 bg-[#B6B09F]/20 rounded-full animate-float" style="animation-delay: 1s;"></div>
+                    <div class="absolute bottom-0 right-1/4 w-2 h-2 bg-[#B6B09F]/20 rounded-full animate-float" style="animation-delay: 2s;"></div>
+                </div>
+            </div>
+            
+            <div class="mb-8 flex justify-center fade-up" style="animation-delay: 0.2s;">
+                <div class="flex flex-col sm:flex-row justify-center items-center gap-3 px-4 sm:px-0">
+                    <!-- All button - full width on mobile, centered on top -->
+                    <button class="product-filter px-3 py-2 sm:px-4 sm:py-2 text-sm sm:text-base rounded-full border border-black hover:bg-black hover:text-white transition w-full max-w-[200px] sm:w-auto sm:max-w-none" data-filter="all">All</button>
+                    
+                    <!-- Bottom row on mobile - three buttons side by side -->
+                    <div class="flex justify-center gap-2 sm:gap-3 w-full sm:w-auto">
+                        <button class="product-filter px-3 py-2 sm:px-4 sm:py-2 text-sm sm:text-base rounded-full border border-black hover:bg-black hover:text-white transition flex-1 max-w-[90px] sm:flex-none sm:max-w-none" data-filter="bracelets">Bracelets</button>
+                        <button class="product-filter px-3 py-2 sm:px-4 sm:py-2 text-sm sm:text-base rounded-full border border-black hover:bg-black hover:text-white transition flex-1 max-w-[85px] sm:flex-none sm:max-w-none" data-filter="earrings">Earrings</button>
+                        <button class="product-filter px-3 py-2 sm:px-4 sm:py-2 text-sm sm:text-base rounded-full border border-black hover:bg-black hover:text-white transition flex-1 max-w-[95px] sm:flex-none sm:max-w-none" data-filter="necklaces">Necklaces</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+               <!-- Bracelet Product 1 -->
+                <div              class="product-card fade-up" data-category="bracelets" style="animation-delay: 0.4s;">
+                    <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                        <div class="relative overflow-hidden h-64">
+                            <img src="Images/brace1.jpg" 
+                                 alt="Luna Silver Cuff" 
+                                 class="product-image w-full h-full object-cover transition duration-300">
+                            <div class="quick-view absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0">
+                                <button class="quick-view-btn text-white border border-white px-4 py-2 rounded hover:bg-white hover:text-black transition">
+                                    Quick View
+                                </button>
+                            </div>
+                        </div>
+                        <div class="p-4">
+                            <h3 class="font-semibold text-lg mb-1">Silver finish Bracelet</h3>
+                            <p class="text-[#B6B09F] mb-3">Ria- 185</p>
+                            <button class="add-to-cart w-full bg-black text-white py-2 px-4 rounded hover:bg-opacity-90 transition" 
+                                    data-id="1" 
+                                    data-name="Silver finish Bracelet" 
+                                    data-price="RIA 185" 
+                                    data-image="Images/brace1.jpg">
+                                Add to Cart
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Product 2 -->
+                <div              class="product-card fade-up" data-category="bracelets" style="animation-delay: 0.4s;">
+                    <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                        <div class="relative overflow-hidden h-64">
+                            <img src="Images/brace2.jpg" 
+                                 alt="Luna Silver Cuff" 
+                                 class="product-image w-full h-full object-cover transition duration-300">
+                            <div class="quick-view absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0">
+                                <button class="quick-view-btn text-white border border-white px-4 py-2 rounded hover:bg-white hover:text-black transition">
+                                    Quick View
+                                </button>
+                            </div>
+                        </div>
+                        <div class="p-4">
+                            <h3 class="font-semibold text-lg mb-1">Silver finish Bracelet</h3>
+                            <p class="text-[#B6B09F] mb-3">Ria-96</p>
+                            <button class="add-to-cart w-full bg-black text-white py-2 px-4 rounded hover:bg-opacity-90 transition" 
+                                    data-id="2" 
+                                    data-name="Silver finish Bracelet" 
+                                    data-price="RIA 96" 
+                                    data-image="Images/brace2.jpg">
+                                Add to Cart
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <!-- Product 3-->
+                <div              class="product-card fade-up" data-category="bracelets" style="animation-delay: 0.4s;">
+                    <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                        <div class="relative overflow-hidden h-64">
+                            <img src="Images/brace3.jpg" 
+                                 alt="Luna Silver Cuff" 
+                                 class="product-image w-full h-full object-cover transition duration-300">
+                            <div class="quick-view absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0">
+                                <button class="quick-view-btn text-white border border-white px-4 py-2 rounded hover:bg-white hover:text-black transition">
+                                    Quick View
+                                </button>
+                            </div>
+                        </div>
+                        <div class="p-4">
+                            <h3 class="font-semibold text-lg mb-1">Silver finish Bracelet</h3>
+                            <p class="text-[#B6B09F] mb-3">Ria-159</p>
+                            <button class="add-to-cart w-full bg-black text-white py-2 px-4 rounded hover:bg-opacity-90 transition" 
+                                    data-id="3" 
+                                    data-name="Silver finish Bracelet" 
+                                    data-price="RIA 159" 
+                                    data-image="Images/brace2.jpg">
+                                Add to Cart
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- EArings Product 4 -->
+                <div class="product-card fade-up" data-category="earrings" style="animation-delay: 0.5s;">
+                    <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                        <div class="relative overflow-hidden h-64">
+                            <img src="Images/ear1.jpg" 
+                                 alt="Starfall Diamond Studs" 
+                                 class="product-image w-full h-full object-cover transition duration-300">
+                            <div class="quick-view absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0">
+                                <button class="quick-view-btn text-white border border-white px-4 py-2 rounded hover:bg-white hover:text-black transition">
+                                    Quick View
+                                </button>
+                            </div>
+                        </div>
+                        <div class="p-4">
+                            <h3 class="font-semibold text-lg mb-1">Earrings Studs </h3>
+                            <p class="text-[#B6B09F] mb-3">Ria -90</p>
+                            <button class="add-to-cart w-full bg-black text-white py-2 px-4 rounded hover:bg-opacity-90 transition" 
+                                    data-id="5" 
+                                    data-name="Earrings Studs" 
+                                    data-price="RIA 90" 
+                                    data-image="Images/ear1.jpg">
+                                Add to Cart
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                  <!-- Product 5 -->
+                <div class="product-card fade-up" data-category="earrings" style="animation-delay: 0.5s;">
+                    <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                        <div class="relative overflow-hidden h-64">
+                            <img src="Images/ear2.jpg" 
+                                 alt="Starfall Diamond Studs" 
+                                 class="product-image w-full h-full object-cover transition duration-300">
+                            <div class="quick-view absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0">
+                                <button class="quick-view-btn text-white border border-white px-4 py-2 rounded hover:bg-white hover:text-black transition">
+                                    Quick View
+                                </button>
+                            </div>
+                        </div>
+                        <div class="p-4">
+                            <h3 class="font-semibold text-lg mb-1">Earrings Studs </h3>
+                            <p class="text-[#B6B09F] mb-3">Ria -70</p>
+                            <button class="add-to-cart w-full bg-black text-white py-2 px-4 rounded hover:bg-opacity-90 transition" 
+                                    data-id="6" 
+                                    data-name="Earrings Studs" 
+                                    data-price="RIA 70" 
+                                    data-image="Images/ear2.jpg">
+                                Add to Cart
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                  <!-- Product 6 -->
+                <div class="product-card fade-up" data-category="earrings" style="animation-delay: 0.5s;">
+                    <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                        <div class="relative overflow-hidden h-64">
+                            <img src="Images/ear3.jpg" 
+                                 alt="Starfall Diamond Studs" 
+                                 class="product-image w-full h-full object-cover transition duration-300">
+                            <div class="quick-view absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0">
+                                <button class="quick-view-btn text-white border border-white px-4 py-2 rounded hover:bg-white hover:text-black transition">
+                                    Quick View
+                                </button>
+                            </div>
+                        </div>
+                        <div class="p-4">
+                            <h3 class="font-semibold text-lg mb-1">Earrings Studs </h3>
+                            <p class="text-[#B6B09F] mb-3">Ria -100</p>
+                            <button class="add-to-cart w-full bg-black text-white py-2 px-4 rounded hover:bg-opacity-90 transition" 
+                                    data-id="6" 
+                                    data-name="Earrings Studs" 
+                                    data-price="RIA 100" 
+                                    data-image="Images/ear3.jpg">
+                                Add to Cart
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Necklace Product 7 -->
+                <div class="product-card fade-up" data-category="necklaces" style="animation-delay: 0.6s;">
+                    <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                        <div class="relative overflow-hidden h-64">
+                            <img src="Images/neck2.jpg" 
+                                 alt="Celestia Chain Necklace" 
+                                 class="product-image w-full h-full object-cover transition duration-300">
+                            <div class="quick-view absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0">
+                                <button class="quick-view-btn text-white border border-white px-4 py-2 rounded hover:bg-white hover:text-black transition">
+                                    Quick View
+                                </button>
+                            </div>
+                        </div>
+                        <div class="p-4">
+                            <h3 class="font-semibold text-lg mb-1">Celestia Chain Necklace</h3>
+                            <p class="text-[#B6B09F] mb-3">Ria-379</p>
+                            <button class="add-to-cart w-full bg-black text-white py-2 px-4 rounded hover:bg-opacity-90 transition" 
+                                    data-id="7" 
+                                    data-name="Celestia Chain Necklace" 
+                                    data-price="RIA 379" 
+                                    data-image="Images/neck2.jpg">
+                                Add to Cart
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Necklace Product 7 -->
+                <div class="product-card fade-up" data-category="necklaces" style="animation-delay: 0.6s;">
+                    <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                        <div class="relative overflow-hidden h-64">
+                            <img src="Images/neck3.jpg" 
+                                 alt="Celestia Chain Necklace" 
+                                 class="product-image w-full h-full object-cover transition duration-300">
+                            <div class="quick-view absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0">
+                                <button class="quick-view-btn text-white border border-white px-4 py-2 rounded hover:bg-white hover:text-black transition">
+                                    Quick View
+                                </button>
+                            </div>
+                        </div>
+                        <div class="p-4">
+                            <h3 class="font-semibold text-lg mb-1">Celestia Chain Necklace</h3>
+                            <p class="text-[#B6B09F] mb-3">Ria-92</p>
+                            <button class="add-to-cart w-full bg-black text-white py-2 px-4 rounded hover:bg-opacity-90 transition" 
+                                    data-id="8" 
+                                    data-name="Celestia Chain Necklace" 
+                                    data-price="RIA 92" 
+                                    data-image="Images/neck3.jpg">
+                                Add to Cart
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Social Section -->
+    <section id="social" class="py-20 bg-gradient-to-br from-white via-gray-400 to-[#F2F2F2] relative overflow-hidden">
+        <!-- Jewelry Particles Background -->
+        <div class="absolute inset-0 pointer-events-none">
+            <!-- Diamond particles -->
+            <div class="absolute top-12 left-20 w-8 h-8 border-4 border-[#B6B09F]/30 transform rotate-45 animate-floatAcross" style="animation-delay: 0.5s;"></div>
+            <div class="absolute top-32 right-24 w-6 h-6 border-4 border-gray-600/20 transform rotate-45 animate-floatDiagonal" style="animation-delay: 2.5s;"></div>
+            <div class="absolute bottom-16 left-1/3 w-10 h-10 border-4 border-[#B6B09F]/25 transform rotate-45 animate-floatAcross" style="animation-delay: 4.5s;"></div>
+            
+            <!-- Gem particles -->
+            <div class="absolute top-20 right-1/4 w-8 h-12 bg-gradient-to-b from-[#B6B09F]/40 to-gray-600/30 rounded-full animate-floatDiagonal" style="animation-delay: 1.5s; box-shadow: 0 0 20px rgba(182, 176, 159, 0.3);"></div>
+            <div class="absolute bottom-24 right-16 w-6 h-10 bg-gradient-to-b from-gray-600/30 to-[#B6B09F]/40 rounded-full animate-floatAcross" style="animation-delay: 3.5s; box-shadow: 0 0 15px rgba(128, 128, 128, 0.2);"></div>
+            
+            <!-- Sparkle particles -->
+            <div class="absolute top-40 left-1/4 w-4 h-4 bg-[#B6B09F]/50 rounded-full animate-sparkleFloat" style="animation-delay: 1s; box-shadow: 0 0 10px rgba(182, 176, 159, 0.4);"></div>
+            <div class="absolute bottom-32 left-12 w-6 h-6 bg-gray-600/40 rounded-full animate-sparkleFloat" style="animation-delay: 3s; box-shadow: 0 0 12px rgba(128, 128, 128, 0.3);"></div>
+            <div class="absolute top-16 right-1/3 w-3 h-3 bg-[#B6B09F]/60 rounded-full animate-sparkleFloat" style="animation-delay: 5s; box-shadow: 0 0 8px rgba(182, 176, 159, 0.5);"></div>
+        </div>
+        
+        <div class="max-w-6xl mx-auto px-6 text-center relative z-10">
+            <div class="fade-up">
+                <h2 class="seasons-font text-4xl font-bold md:text-5xl mb-6">Connect With Us</h2>
+                <p class="max-w-2xl mx-auto mb-8 text-2xl">Follow us for behind-the-scenes and exclusive drops.</p>
+            </div>
+            
+            <div class="flex justify-center space-x-12  fade-up relative" style="animation-delay: 0.3s;">
+                <!-- Decorative background elements -->
+                <div class="absolute inset-0 bg-gradient-to-r from-transparent via-[#B6B09F]/5 to-transparent rounded-full blur-2xl"></div>
+                <div class="absolute -top-4 left-1/2 transform -translate-x-1/2 w-32 h-1 bg-gradient-to-r from-transparent via-[#B6B09F]/30 to-transparent rounded-full"></div>
+                
+                <!-- Facebook Icon -->
+                <a href="https://www.facebook.com/profile.php?id=61574443553150" class="social-icon relative group">
+                    <div class="relative w-20 h-20 bg-white/80 backdrop-blur-sm rounded-full border-2 border-[#B6B09F]/20 flex items-center justify-center hover:border-[#4267B2] hover:bg-gradient-to-br hover:from-[#4267B2]/10 hover:to-[#4267B2]/5 transition-all duration-500 hover:scale-110 hover:-translate-y-2 hover:shadow-xl hover:shadow-[#4267B2]/25 group">
+                        <i class="text-4xl fab fa-facebook text-gray-700 group-hover:text-[#4267B2] transition-all duration-300"></i>
+                        
+                        <!-- Decorative ring -->
+                        <div class="absolute inset-0 rounded-full border-2 border-[#4267B2]/0 group-hover:border-[#4267B2]/30 transition-all duration-300 animate-pulse opacity-0 group-hover:opacity-100"></div>
+                        
+                        <!-- Floating particles -->
+                        <div class="absolute -top-2 -right-2 w-3 h-3 bg-[#4267B2]/40 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300 animate-bounce"></div>
+                        <div class="absolute -bottom-2 -left-2 w-2 h-2 bg-[#4267B2]/30 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300 animate-pulse" style="animation-delay: 0.2s;"></div>
+                    </div>
+                    
+                    <!-- Label -->
+                    <div class="absolute -bottom-8 left-1/2 transform -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-all duration-300">
+                        <span class="text-sm font-medium text-[#4267B2] bg-white/90 px-3 py-1 rounded-full shadow-lg">Facebook</span>
+                    </div>
+                    
+                    <span class="sr-only">Facebook</span>
+                </a>
+                
+                <!-- Instagram Icon -->
+                <a href="https://www.instagram.com/gauravik_collection/" class="social-icon relative group">
+                    <div class="relative w-20 h-20 bg-white/80 backdrop-blur-sm rounded-full border-2 border-[#B6B09F]/20 flex items-center justify-center hover:border-[#E1306C] hover:bg-gradient-to-br hover:from-[#E1306C]/10 hover:to-[#F56040]/5 transition-all duration-500 hover:scale-110 hover:-translate-y-2 hover:shadow-xl hover:shadow-[#E1306C]/25 group">
+                        <i class="text-4xl fab fa-instagram text-gray-700 group-hover:text-[#E1306C] transition-all duration-300"></i>
+                        
+                        <!-- Decorative ring -->
+                        <div class="absolute inset-0 rounded-full border-2 border-[#E1306C]/0 group-hover:border-[#E1306C]/30 transition-all duration-300 animate-pulse opacity-0 group-hover:opacity-100"></div>
+                        
+                        <!-- Floating particles -->
+                        <div class="absolute -top-2 -right-2 w-3 h-3 bg-[#E1306C]/40 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300 animate-bounce"></div>
+                        <div class="absolute -bottom-2 -left-2 w-2 h-2 bg-[#F56040]/30 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300 animate-pulse" style="animation-delay: 0.2s;"></div>
+                    </div>
+                    
+                    <!-- Label -->
+                    <div class="absolute -bottom-8 left-1/2 transform -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-all duration-300">
+                        <span class="text-sm font-medium text-[#E1306C] bg-white/90 px-3 py-1 rounded-full shadow-lg">Instagram</span>
+                    </div>
+                    
+                    <span class="sr-only">Instagram</span>
+                </a>
+                
+                <!-- Decorative bottom element -->
+                <div class="absolute -bottom-4 left-1/2 transform -translate-x-1/2 w-24 h-1 bg-gradient-to-r from-transparent via-[#B6B09F]/30 to-transparent rounded-full"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-[#B6B09F] text-white py-12 relative">
+        <div class="max-w-7xl mx-auto px-6 relative z-10">
+            <div class=" mb-2">
+                <div class="text-center">
+                    <h3 class="seasons-font text-2xl mb-4">GAURAVIK</h3>
+                    <p class="mb-4">Adorn Your Beauty with our handcrafted fine jewelry collections.</p>
+                </div>
+                
+                
+            </div>
+            
+            <div class="border-t border-white border-opacity-20 pt-8 text-center">
+                <p>© 2025 Gauravik Jewellery. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Wait for the DOM to be fully loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            // Hide loading spinner after 1.5 seconds
+            setTimeout(function() {
+                document.getElementById('loading').style.display = 'none';
+            }, 1500);
+            
+            // Navbar scroll effect
+            const navbar = document.getElementById('navbar');
+            window.addEventListener('scroll', function() {
+                if (window.scrollY > 50) {
+                    navbar.classList.add('scrolled');
+                } else {
+                    navbar.classList.remove('scrolled');
+                }
+            });
+            
+            // Mobile menu toggle
+            const mobileMenuButton = document.getElementById('mobileMenuButton');
+            const mobileMenu = document.getElementById('mobileMenu');
+            const mobileMenuOverlay = document.getElementById('mobileMenuOverlay');
+            const closeMobileMenu = document.getElementById('closeMobileMenu');
+            
+            function openMobileMenu() {
+                 mobileMenuOverlay.classList.remove('opacity-0', 'invisible');
+                 mobileMenuOverlay.classList.add('opacity-100', 'visible');
+                 mobileMenu.classList.remove('-translate-x-full');
+                 mobileMenu.classList.add('translate-x-0');
+                 document.body.style.overflow = 'hidden';
+             }
+             
+             function closeMobileMenuFunc() {
+                 mobileMenuOverlay.classList.remove('opacity-100', 'visible');
+                 mobileMenuOverlay.classList.add('opacity-0', 'invisible');
+                 mobileMenu.classList.remove('translate-x-0');
+                 mobileMenu.classList.add('-translate-x-full');
+                 document.body.style.overflow = '';
+             }
+            
+            mobileMenuButton.addEventListener('click', openMobileMenu);
+            closeMobileMenu.addEventListener('click', closeMobileMenuFunc);
+            mobileMenuOverlay.addEventListener('click', closeMobileMenuFunc);
+            
+            // Close mobile menu when clicking on a link
+            const mobileMenuLinks = mobileMenu.querySelectorAll('a');
+            mobileMenuLinks.forEach(link => {
+                link.addEventListener('click', function() {
+                    closeMobileMenuFunc();
+                });
+            });
+            
+            // Close mobile menu on escape key
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape') {
+                    closeMobileMenuFunc();
+                }
+            });
+            
+            // Cart functionality
+            const cartButton = document.getElementById('cartButton');
+            const cartDrawer = document.getElementById('cartDrawer');
+            const closeCart = document.getElementById('closeCart');
+            const cartItems = document.getElementById('cartItems');
+            const emptyCartMessage = document.getElementById('emptyCartMessage');
+            const checkoutButton = document.getElementById('checkoutButton');
+            const cartBadge = document.getElementById('cartBadge');
+            
+            let cart = [];
+            
+            // Open cart drawer
+            cartButton.addEventListener('click', function() {
+                cartDrawer.classList.add('open');
+                document.body.style.overflow = 'hidden';
+            });
+            
+            // Close cart drawer
+            closeCart.addEventListener('click', function() {
+                cartDrawer.classList.remove('open');
+                document.body.style.overflow = '';
+            });
+            
+            // Add to cart functionality
+            const addToCartButtons = document.querySelectorAll('.add-to-cart');
+            addToCartButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const id = this.getAttribute('data-id');
+                    const name = this.getAttribute('data-name');
+                    const price = parseFloat(this.getAttribute('data-price').replace('RIA ', ''));
+                    const image = this.getAttribute('data-image');
+                    
+                    // Check if item already exists in cart
+                    const existingItem = cart.find(item => item.id === id);
+                    
+                    if (existingItem) {
+                        existingItem.quantity += 1;
+                    } else {
+                        cart.push({
+                            id,
+                            name,
+                            price,
+                            image,
+                            quantity: 1
+                        });
+                    }
+                    
+                    updateCart();
+                    
+                    // Add bounce effect to button
+                    this.classList.add('animate-bounce');
+                    setTimeout(() => {
+                        this.classList.remove('animate-bounce');
+                    }, 1000);
+                });
+            });
+            
+            // Update cart UI
+            function updateCart() {
+                // Clear cart items
+                cartItems.innerHTML = '';
+                
+                if (cart.length === 0) {
+                    emptyCartMessage.classList.remove('hidden');
+                    checkoutButton.classList.add('hidden');
+                } else {
+                    emptyCartMessage.classList.add('hidden');
+                    checkoutButton.classList.remove('hidden');
+                    
+                    let subtotal = 0;
+                    
+                    cart.forEach(item => {
+                        subtotal += item.price * item.quantity;
+                        
+                        const cartItem = document.createElement('div');
+                        cartItem.className = 'flex items-center border-b border-gray-200 pb-4';
+                        cartItem.innerHTML = `
+                            <div class="w-20 h-20 bg-gray-100 rounded overflow-hidden mr-4">
+                                <img src="${item.image}" alt="${item.name}" class="w-full h-full object-cover">
+                            </div>
+                            <div class="flex-grow">
+                                <h4 class="font-medium">${item.name}</h4>
+                                <p class="text-gray-600">RIA ${item.price.toLocaleString()}</p>
+                                <div class="flex items-center mt-2">
+                                    <button class="decrease-quantity text-gray-500 px-2" data-id="${item.id}">-</button>
+                                    <span class="quantity mx-2">${item.quantity}</span>
+                                    <button class="increase-quantity text-gray-500 px-2" data-id="${item.id}">+</button>
+                                </div>
+                            </div>
+                            <div class="flex flex-col items-end">
+                                <p class="font-medium">RIA ${(item.price * item.quantity).toLocaleString()}</p>
+                                <button class="remove-item text-red-500 text-sm mt-2" data-id="${item.id}">Remove</button>
+                            </div>
+                        `;
+                        
+                        cartItems.appendChild(cartItem);
+                    });
+                    
+                    // Update subtotal
+                    document.getElementById('cartSubtotal').textContent = `RIA ${subtotal.toLocaleString()}`;
+                    
+                    // Add event listeners for quantity buttons
+                    document.querySelectorAll('.increase-quantity').forEach(button => {
+                        button.addEventListener('click', function() {
+                            const id = this.getAttribute('data-id');
+                            const item = cart.find(item => item.id === id);
+                            if (item) {
+                                item.quantity += 1;
+                                updateCart();
+                            }
+                        });
+                    });
+                    
+                    document.querySelectorAll('.decrease-quantity').forEach(button => {
+                        button.addEventListener('click', function() {
+                            const id = this.getAttribute('data-id');
+                            const item = cart.find(item => item.id === id);
+                            if (item && item.quantity > 1) {
+                                item.quantity -= 1;
+                                updateCart();
+                            }
+                        });
+                    });
+                    
+                    document.querySelectorAll('.remove-item').forEach(button => {
+                        button.addEventListener('click', function() {
+                            const id = this.getAttribute('data-id');
+                            cart = cart.filter(item => item.id !== id);
+                            updateCart();
+                        });
+                    });
+                }
+                
+                // Update cart badge
+                const totalItems = cart.reduce((total, item) => total + item.quantity, 0);
+                if (totalItems > 0) {
+                    cartBadge.textContent = totalItems;
+                    cartBadge.classList.remove('hidden');
+                } else {
+                    cartBadge.classList.add('hidden');
+                }
+            }
+            
+            // Checkout button
+             checkoutButton.addEventListener('click', function() {
+                if (cart.length === 0) {
+                    alert('Your cart is empty!');
+                    return;
+                }
+                
+                // Create order summary for Instagram message
+                let orderSummary = 'Hi! I would like to place an order:\n\n';
+                let totalAmount = 0;
+                
+                cart.forEach((item, index) => {
+                    const itemTotal = item.price * item.quantity;
+                    totalAmount += itemTotal;
+                    orderSummary += `${index + 1}. ${item.name}\n`;
+                    orderSummary += `   Quantity: ${item.quantity}\n`;
+                    orderSummary += `   Price: RIA ${itemTotal.toLocaleString()}\n\n`;
+                });
+                
+                orderSummary += `Total: RIA ${totalAmount.toLocaleString()}\n\n`;
+                orderSummary += 'Please let me know the next steps for payment and delivery. Thank you!';
+                
+                // Encode the message for URL
+                const encodedMessage = encodeURIComponent(orderSummary);
+                
+                // Instagram direct message URL for gauravik_collection
+                 const instagramURL = `https://www.instagram.com/gauravik_collection/?text=${encodedMessage}`;
+                
+                // Open Instagram in new tab
+                window.open(instagramURL, '_blank');
+                
+                // Clear cart and close drawer
+                cart = [];
+                updateCart();
+                cartDrawer.classList.remove('open');
+                document.body.style.overflow = '';
+             });
+            
+            // Product filtering
+            const productFilters = document.querySelectorAll('.product-filter');
+            productFilters.forEach(filter => {
+                filter.addEventListener('click', function() {
+                    const filterValue = this.getAttribute('data-filter');
+                    
+                    // Update active filter button
+                    productFilters.forEach(btn => btn.classList.remove('bg-black', 'text-white'));
+                    this.classList.add('bg-black', 'text-white');
+                    
+                    // Filter products
+                    const productCards = document.querySelectorAll('.product-card');
+                    productCards.forEach(card => {
+                        if (filterValue === 'all' || card.getAttribute('data-category') === filterValue) {
+                            card.style.display = 'block';
+                        } else {
+                            card.style.display = 'none';
+                        }
+                    });
+                });
+            });
+            
+            // Scroll to top button
+            const scrollToTopButton = document.getElementById('scrollToTop');
+            window.addEventListener('scroll', function() {
+                if (window.scrollY > 300) {
+                    scrollToTopButton.classList.remove('hidden');
+                } else {
+                    scrollToTopButton.classList.add('hidden');
+                }
+            });
+            
+            scrollToTopButton.addEventListener('click', function() {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+            
+            // Quick view functionality
+            const quickViewButtons = document.querySelectorAll('.quick-view-btn');
+            quickViewButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const productCard = this.closest('.product-card');
+                    const productName = productCard.querySelector('h3').textContent;
+                    const productPrice = productCard.querySelector('p').textContent;
+                    const productImage = productCard.querySelector('img').src;
+                    
+                    // Create modal
+                    const modal = document.createElement('div');
+                    modal.className = 'fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50 p-4';
+                    modal.innerHTML = `
+                        <div class="bg-white rounded-lg max-w-4xl w-full max-h-[90vh] overflow-y-auto">
+                            <div class="relative">
+                                <button class="absolute top-4 right-4 text-black text-2xl z-10">&times;</button>
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 p-8">
+                                    <div class="h-96 md:h-auto">
+                                        <img src="${productImage}" alt="${productName}" class="w-full h-full object-contain">
+                                    </div>
+                                    <div>
+                                        <h2 class="seasons-font text-3xl mb-4">${productName}</h2>
+                                        <p class="text-2xl mb-6">${productPrice}</p>
+                                        <p class="mb-6">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                                        <div class="mb-6">
+                                            <h3 class="font-semibold mb-2">Details</h3>
+                                            <ul class="list-disc pl-5">
+                                                <li>Material: Gold-Silver</li>
+                                                <li>Gemstone: Diamond</li>
+                                                <li>Size: Adjustable</li>
+                                                <li>Weight: N/A</li>
+                                            </ul>
+                                        </div>
+                                        <button class="add-to-cart w-full bg-black text-white py-3 px-6 rounded hover:bg-opacity-90 transition">
+                                            Add to Cart
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                    
+                    document.body.appendChild(modal);
+                    document.body.style.overflow = 'hidden';
+                    
+                    // Close modal
+                    const closeButton = modal.querySelector('button');
+                    closeButton.addEventListener('click', function() {
+                        document.body.removeChild(modal);
+                        document.body.style.overflow = '';
+                    });
+                    
+                    // Add to cart from modal
+                    const modalAddToCart = modal.querySelector('.add-to-cart');
+                    modalAddToCart.addEventListener('click', function() {
+                        const id = Date.now().toString(); // Generate unique ID
+                        const price = parseFloat(productPrice.replace(/RIA[\s-]/, '').replace(',', ''));
+                        
+                        cart.push({
+                            id,
+                            name: productName,
+                            price,
+                            image: productImage,
+                            quantity: 1
+                        });
+                        
+                        updateCart();
+                        document.body.removeChild(modal);
+                        document.body.style.overflow = '';
+                        
+                        // Show cart drawer
+                        cartDrawer.classList.add('open');
+                    });
+                });
+            });
+            
+            // Intersection Observer for animations
+            const observerOptions = {
+                threshold: 0.1
+            };
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add(entry.target.dataset.animation);
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+            
+            document.querySelectorAll('[data-animation]').forEach(element => {
+                observer.observe(element);
+            });
+        });
+    </script>
+</body>
+</html>
