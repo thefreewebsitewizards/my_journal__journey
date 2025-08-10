@@ -455,12 +455,36 @@
                 </a>
             </div>
             
-            <!-- Cart Icon -->
-            <div class="relative">
-                <button id="cartButton" class="text-black focus:outline-none relative">
-                    <i class="fas fa-shopping-bag text-2xl"></i>
-                    <span id="cartBadge" class="cart-badge absolute bg-[#B6B09F] text-white text-xs w-5 h-5 flex items-center justify-center rounded-full hidden">0</span>
+            <!-- Search, Wishlist & Cart Icons -->
+            <div class="flex items-center space-x-4">
+                <!-- Search Bar (Desktop) -->
+                <div class="hidden lg:flex relative">
+                    <input type="text" id="searchInput" placeholder="Search jewelry..." class="w-64 px-4 py-2 pr-10 rounded-full border border-[#B6B09F]/30 focus:border-[#B6B09F] focus:outline-none bg-white/80 backdrop-blur-sm transition-all duration-300">
+                    <button id="searchButton" class="absolute right-2 top-1/2 transform -translate-y-1/2 text-[#B6B09F] hover:text-gray-800 transition-colors duration-300">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
+                
+                <!-- Search Icon (Mobile) -->
+                <button id="mobileSearchButton" class="lg:hidden text-black focus:outline-none">
+                    <i class="fas fa-search text-xl"></i>
                 </button>
+                
+                <!-- Wishlist Icon -->
+                <div class="relative">
+                    <button id="wishlistButton" class="text-black focus:outline-none relative">
+                        <i class="fas fa-heart text-xl"></i>
+                        <span id="wishlistBadge" class="cart-badge absolute bg-red-500 text-white text-xs w-5 h-5 flex items-center justify-center rounded-full hidden">0</span>
+                    </button>
+                </div>
+                
+                <!-- Cart Icon -->
+                <div class="relative">
+                    <button id="cartButton" class="text-black focus:outline-none relative">
+                        <i class="fas fa-shopping-bag text-xl"></i>
+                        <span id="cartBadge" class="cart-badge absolute bg-[#B6B09F] text-white text-xs w-5 h-5 flex items-center justify-center rounded-full hidden">0</span>
+                    </button>
+                </div>
             </div>
         </div>
         
@@ -481,7 +505,7 @@
                 <!-- Brand Logo -->
                  <div class="flex items-center space-x-3">
                      <div class="w-12 h-12 rounded-full overflow-hidden shadow-lg">
-                         <img src="Images/aabb.jpg" alt="GAURAVIK Logo" class="w-full h-full object-cover">
+                         <img src="Images/story.png" alt="GAURAVIK Logo" class="w-full h-full object-cover">
                      </div>
                      <div>
                          <h3 class="seasons-font text-xl font-bold text-gray-800">GAURAVIK</h3>
@@ -526,6 +550,23 @@
                         <div class="flex-1">
                             <span class="font-semibold text-lg group-hover:text-[#B6B09F] transition-colors duration-300">About</span>
                             <p class="text-sm text-gray-500 group-hover:text-gray-600">Our story</p>
+                        </div>
+                        <div class="opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-x-2 group-hover:translate-x-0">
+                            <svg class="w-5 h-5 text-[#B6B09F]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                            </svg>
+                        </div>
+                    </a>
+                    
+                    <a href="#offers" class="nav-link group flex items-center space-x-4 text-gray-800 hover:text-[#B6B09F] py-4 px-4 rounded-2xl hover:bg-white/80 transition-all duration-300 hover:shadow-lg hover:transform hover:scale-105">
+                        <div class="w-12 h-12 flex items-center justify-center bg-gradient-to-br from-[#B6B09F]/10 to-[#B6B09F]/5 group-hover:from-[#B6B09F]/20 group-hover:to-[#B6B09F]/10 rounded-xl transition-all duration-300 group-hover:scale-110 group-hover:rotate-3">
+                            <svg class="w-6 h-6 text-[#B6B09F]" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                            </svg>
+                        </div>
+                        <div class="flex-1">
+                            <span class="font-semibold text-lg group-hover:text-[#B6B09F] transition-colors duration-300">Offers</span>
+                            <p class="text-sm text-gray-500 group-hover:text-gray-600">Special deals</p>
                         </div>
                         <div class="opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-x-2 group-hover:translate-x-0">
                             <svg class="w-5 h-5 text-[#B6B09F]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -614,28 +655,72 @@
         </div>
     </div>
 
+    <!-- Mobile Search Overlay -->
+    <div id="mobileSearchOverlay" class="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 opacity-0 invisible transition-all duration-300">
+        <div class="flex items-start justify-center pt-20 px-4">
+            <div class="bg-white rounded-2xl shadow-2xl w-full max-w-md transform scale-95 transition-transform duration-300" id="mobileSearchModal">
+                <div class="p-6">
+                    <div class="flex justify-between items-center mb-4">
+                        <h3 class="seasons-font text-xl font-semibold text-gray-800">Search Jewelry</h3>
+                        <button id="closeMobileSearch" class="text-gray-500 hover:text-gray-800 transition-colors duration-300">
+                            <i class="fas fa-times text-xl"></i>
+                        </button>
+                    </div>
+                    <div class="relative">
+                        <input type="text" id="mobileSearchInput" placeholder="Search for rings, necklaces, earrings..." class="w-full px-4 py-3 pr-12 rounded-xl border border-[#B6B09F]/30 focus:border-[#B6B09F] focus:outline-none bg-gray-50 transition-all duration-300">
+                        <button id="mobileSearchSubmit" class="absolute right-3 top-1/2 transform -translate-y-1/2 text-[#B6B09F] hover:text-gray-800 transition-colors duration-300">
+                            <i class="fas fa-search text-lg"></i>
+                        </button>
+                    </div>
+                    <div id="searchSuggestions" class="mt-4 space-y-2">
+                        <div class="text-sm text-gray-600 mb-2">Popular searches:</div>
+                        <div class="flex flex-wrap gap-2">
+                            <button class="search-suggestion px-3 py-1 bg-[#B6B09F]/10 text-[#B6B09F] rounded-full text-sm hover:bg-[#B6B09F]/20 transition-colors duration-300">Rings</button>
+                            <button class="search-suggestion px-3 py-1 bg-[#B6B09F]/10 text-[#B6B09F] rounded-full text-sm hover:bg-[#B6B09F]/20 transition-colors duration-300">Necklaces</button>
+                            <button class="search-suggestion px-3 py-1 bg-[#B6B09F]/10 text-[#B6B09F] rounded-full text-sm hover:bg-[#B6B09F]/20 transition-colors duration-300">Earrings</button>
+                            <button class="search-suggestion px-3 py-1 bg-[#B6B09F]/10 text-[#B6B09F] rounded-full text-sm hover:bg-[#B6B09F]/20 transition-colors duration-300">Bracelets</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Wishlist Drawer -->
+    <div id="wishlistDrawer" class="cart-drawer fixed top-0 right-0 h-full w-full sm:w-96 bg-white shadow-lg z-50 overflow-y-auto">
+        <div class="p-6">
+            <div class="flex justify-between items-center mb-6">
+                <h3 class="seasons-font text-2xl flex items-center">
+                    <i class="fas fa-heart text-red-500 mr-2"></i>
+                    Your Wishlist
+                </h3>
+                <button id="closeWishlist" class="text-black focus:outline-none">
+                    <i class="fas fa-times text-xl"></i>
+                </button>
+            </div>
+            
+            <div id="wishlistItems" class="space-y-4">
+                <!-- Wishlist items will be added here dynamically -->
+                <div class="text-center py-8" id="emptyWishlistMessage">
+                    <i class="fas fa-heart text-gray-300 text-4xl mb-4"></i>
+                    <p class="text-gray-500">Your wishlist is empty</p>
+                    <p class="text-sm text-gray-400 mt-2">Add items you love to save them for later</p>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-200 mt-6 pt-6 hidden" id="wishlistActions">
+                <button id="addAllToCart" class="w-full bg-[#B6B09F] text-white py-3 px-6 rounded hover:bg-opacity-90 transition duration-300 mb-3">
+                    Add All to Cart
+                </button>
+                <button id="clearWishlist" class="w-full border border-red-300 text-red-600 py-2 px-6 rounded hover:bg-red-50 transition duration-300">
+                    Clear Wishlist
+                </button>
+            </div>
+        </div>
+    </div>
+
     <!-- Hero Section -->
     <section id="home" class="hero-gradient min-h-screen flex items-center pt-20 relative overflow-hidden">
-        <!-- Jewelry Particles Background -->
-        <div class="absolute inset-0 pointer-events-none">
-            <!-- Diamond particles -->
-            <div class="jewelry-particle diamond-particle animate-float-across" style="top: 20%; animation-delay: 0s;"></div>
-            <div class="jewelry-particle diamond-particle animate-float-across" style="top: 60%; animation-delay: 5s;"></div>
-            <div class="jewelry-particle diamond-particle animate-float-diagonal" style="animation-delay: 8s;"></div>
-            
-            <!-- Gem particles -->
-            <div class="jewelry-particle gem-particle animate-float-across" style="top: 35%; animation-delay: 2s;"></div>
-            <div class="jewelry-particle gem-particle animate-float-across" style="top: 75%; animation-delay: 7s;"></div>
-            <div class="jewelry-particle gem-particle animate-float-diagonal" style="animation-delay: 12s;"></div>
-            
-            <!-- Sparkle particles -->
-            <div class="jewelry-particle sparkle-particle animate-sparkle-float" style="top: 15%; left: 10%; animation-delay: 1s;"></div>
-            <div class="jewelry-particle sparkle-particle animate-sparkle-float" style="top: 45%; left: 80%; animation-delay: 3s;"></div>
-            <div class="jewelry-particle sparkle-particle animate-sparkle-float" style="top: 70%; left: 15%; animation-delay: 6s;"></div>
-            <div class="jewelry-particle sparkle-particle animate-sparkle-float" style="top: 25%; left: 70%; animation-delay: 9s;"></div>
-            <div class="jewelry-particle sparkle-particle animate-float-across" style="top: 50%; animation-delay: 4s;"></div>
-            <div class="jewelry-particle sparkle-particle animate-float-across" style="top: 80%; animation-delay: 10s;"></div>
-        </div>
         <div class="max-w-7xl mx-auto px-6 py-16 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div class="slide-in-left relative group">
                 <!-- Decorative background elements -->
@@ -687,75 +772,21 @@
         </div>
     </section>
 
+
+
     <!-- About Section -->
     <section id="about" class="py-20 bg-gradient-to-br from-white via-gray-500 to-[#F2F2F2] relative overflow-hidden">
-        <!-- Jewelry Particles Background -->
-        <div class="absolute inset-0 pointer-events-none">
-            <!-- Diamond particles -->
-            <div class="absolute top-20 left-10 w-8 h-8 border-4 border-[#B6B09F]/30 transform rotate-45 animate-floatAcross" style="animation-delay: 0s;"></div>
-            <div class="absolute top-40 right-20 w-6 h-6 border-4 border-gray-600/20 transform rotate-45 animate-floatDiagonal" style="animation-delay: 2s;"></div>
-            <div class="absolute bottom-32 left-1/4 w-10 h-10 border-4 border-[#B6B09F]/25 transform rotate-45 animate-floatAcross" style="animation-delay: 4s;"></div>
+    
+        <div class="max-w-7xl mx-auto px-6  items-center relative z-10">
             
-            <!-- Gem particles -->
-            <div class="absolute top-60 right-10 w-8 h-12 bg-gradient-to-b from-[#B6B09F]/40 to-gray-600/30 rounded-full animate-floatDiagonal" style="animation-delay: 1s; box-shadow: 0 0 20px rgba(182, 176, 159, 0.3);"></div>
-            <div class="absolute bottom-20 right-1/3 w-6 h-10 bg-gradient-to-b from-gray-600/30 to-[#B6B09F]/40 rounded-full animate-floatAcross" style="animation-delay: 3s; box-shadow: 0 0 15px rgba(128, 128, 128, 0.2);"></div>
-            
-            <!-- Sparkle particles -->
-            <div class="absolute top-32 left-1/3 w-4 h-4 bg-[#B6B09F]/50 rounded-full animate-sparkleFloat" style="animation-delay: 0.5s; box-shadow: 0 0 10px rgba(182, 176, 159, 0.4);"></div>
-            <div class="absolute bottom-40 left-20 w-6 h-6 bg-gray-600/40 rounded-full animate-sparkleFloat" style="animation-delay: 2.5s; box-shadow: 0 0 12px rgba(128, 128, 128, 0.3);"></div>
-            <div class="absolute top-80 right-1/4 w-3 h-3 bg-[#B6B09F]/60 rounded-full animate-sparkleFloat" style="animation-delay: 4.5s; box-shadow: 0 0 8px rgba(182, 176, 159, 0.5);"></div>
-        </div>
-        
-        <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center relative z-10">
-            <div class="fade-up relative" style="animation-delay: 0.3s;">
-                <!-- Decorative background element -->
-                <div class="absolute -top-8 -left-8 w-32 h-32 bg-gradient-to-br from-[#B6B09F]/20 to-transparent rounded-full blur-xl animate-pulse"></div>
-                
-                <div class="relative z-10 bg-white/80 backdrop-blur-sm rounded-2xl p-8 shadow-xl border border-[#B6B09F]/20 hover:shadow-2xl transition-all duration-500 hover:transform hover:scale-105">
-                    <h2 class="text-center fonr-semibold seasons-font text-4xl md:text-5xl mb-6 relative pb-4 bg-gradient-to-r from-[#B6B09F] via-gray-800 to-[#B6B09F] bg-clip-text text-transparent animate-gradient">
-                        Our Story
-                        <span class="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-16 h-0.5 bg-gradient-to-r from-transparent via-[#B6B09F] to-transparent animate-shimmer"></span>
-                        <!-- Decorative dots -->
-                        <span class="absolute -top-2 left-1/2 transform -translate-x-1/2 flex space-x-1">
-                            <span class="w-1 h-1 bg-[#B6B09F] rounded-full animate-bounce" style="animation-delay: 0s;"></span>
-                            <span class="w-1 h-1 bg-[#B6B09F] rounded-full animate-bounce" style="animation-delay: 0.1s;"></span>
-                            <span class="w-1 h-1 bg-[#B6B09F] rounded-full animate-bounce" style="animation-delay: 0.2s;"></span>
-                        </span>
-                    </h2>
-                    
-                    <div class="space-y-4">
-                        <p class="text-justify text-lg mb-6 max-w-lg leading-relaxed text-gray-700 hover:text-gray-900 transition-colors duration-300">
-                            Founded with passion for elegance, <span class="font-semibold text-[#B6B09F] hover:text-opacity-80 transition-all duration-300">Gauravik Jewellery</span> crafts timeless accessories for the modern individual. Every piece is made with precision, care, and a story behind it.
-                        </p>
-                        
-                        <!-- Stats or highlights -->
-                        <div class="flex flex-wrap justify-center sm:justify-start gap-2 sm:gap-4 mb-6 px-4 sm:px-0">
-                            <div class="flex items-center space-x-2 bg-[#B6B09F]/10 px-3 py-2 sm:py-1 rounded-full hover:bg-[#B6B09F]/20 transition-colors duration-300 flex-shrink-0">
-                                <span class="w-2 h-2 bg-[#B6B09F] rounded-full animate-pulse"></span>
-                                <span class="text-xs sm:text-sm font-medium whitespace-nowrap">Handcrafted</span>
-                            </div>
-                            <div class="flex items-center space-x-2 bg-[#B6B09F]/10 px-3 py-2 sm:py-1 rounded-full hover:bg-[#B6B09F]/20 transition-colors duration-300 flex-shrink-0">
-                                <span class="w-2 h-2 bg-[#B6B09F] rounded-full animate-pulse" style="animation-delay: 0.5s;"></span>
-                                <span class="text-xs sm:text-sm font-medium whitespace-nowrap">Premium Quality</span>
-                            </div>
-                            <div class="flex items-center space-x-2 bg-[#B6B09F]/10 px-3 py-2 sm:py-1 rounded-full hover:bg-[#B6B09F]/20 transition-colors duration-300 flex-shrink-0">
-                                <span class="w-2 h-2 bg-[#B6B09F] rounded-full animate-pulse" style="animation-delay: 1s;"></span>
-                                <span class="text-xs sm:text-sm font-medium whitespace-nowrap">Timeless Design</span>
-                            </div>
-                        </div>
-                        
-                        <p class="seasons-font text-xl italic text-[#B6B09F] hover:scale-105 transition-transform duration-300 cursor-default">— Gauravik</p>
-                    </div>
-                </div>
-            </div>
 
-            <div class="zoom-in relative">
+            <div class="zoom-in relative flex justify-center">
                 <!-- Decorative background -->
                 <div class="absolute -top-4 -right-4 w-24 h-24 bg-gradient-to-bl from-[#B6B09F]/30 to-transparent rounded-full blur-lg animate-pulse" style="animation-delay: 1s;"></div>
                 
                 <div class="relative">
-                    <div class="grid grid-cols-2 gap-4">
-                        <div class="col-span-2 group">
+                    <div class="flex justify-center" >
+                        <div class="max-w-md group">
                             <div class="relative overflow-hidden rounded-2xl shadow-2xl hover:shadow-3xl transition-all duration-500">
                                 <!-- Overlay gradient -->
                                 <div class="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
@@ -765,9 +796,9 @@
                                     <div class="w-full h-full bg-white rounded-2xl"></div>
                                 </div>
                                 
-                                <img src="Images/aabb.jpg" 
+                                <img src="Images/story.png"
                                      alt="Jewelry artisan" 
-                                     class="relative z-30 w-full h-64 md:h-96 object-cover rounded-2xl group-hover:scale-110 transition-transform duration-700 ease-out">
+                                     class="relative z-30 w-96 h-96 md:h-96 object-cover rounded-2xl group-hover:scale-110 transition-transform duration-700 ease-out">
                                 
                                 <!-- Floating elements -->
                                 <div class="absolute top-4 right-4 z-40 opacity-0 group-hover:opacity-100 transition-all duration-500 transform translate-x-4 group-hover:translate-x-0">
@@ -789,47 +820,21 @@
 
     <!-- Products Section -->
     <section id="products" class="py-20 bg-[#F2F2F2] relative overflow-hidden">
-        <!-- Jewelry Particles Background -->
-        <div class="absolute inset-0 pointer-events-none">
-            <!-- Diamond particles -->
-            <div class="absolute top-16 right-16 w-8 h-8 border-4 border-[#B6B09F]/30 transform rotate-45 animate-floatAcross" style="animation-delay: 1s;"></div>
-            <div class="absolute top-80 left-12 w-6 h-6 border-4 border-gray-600/20 transform rotate-45 animate-floatDiagonal" style="animation-delay: 3s;"></div>
-            <div class="absolute bottom-24 right-1/4 w-10 h-10 border-4 border-[#B6B09F]/25 transform rotate-45 animate-floatAcross" style="animation-delay: 5s;"></div>
-            
-            <!-- Gem particles -->
-            <div class="absolute top-40 left-1/4 w-8 h-12 bg-gradient-to-b from-[#B6B09F]/40 to-gray-600/30 rounded-full animate-floatDiagonal" style="animation-delay: 2s; box-shadow: 0 0 20px rgba(182, 176, 159, 0.3);"></div>
-            <div class="absolute bottom-40 left-16 w-6 h-10 bg-gradient-to-b from-gray-600/30 to-[#B6B09F]/40 rounded-full animate-floatAcross" style="animation-delay: 4s; box-shadow: 0 0 15px rgba(128, 128, 128, 0.2);"></div>
-            
-            <!-- Sparkle particles -->
-            <div class="absolute top-24 right-1/3 w-4 h-4 bg-[#B6B09F]/50 rounded-full animate-sparkleFloat" style="animation-delay: 1.5s; box-shadow: 0 0 10px rgba(182, 176, 159, 0.4);"></div>
-            <div class="absolute bottom-60 right-20 w-6 h-6 bg-gray-600/40 rounded-full animate-sparkleFloat" style="animation-delay: 3.5s; box-shadow: 0 0 12px rgba(128, 128, 128, 0.3);"></div>
-            <div class="absolute top-60 left-1/3 w-3 h-3 bg-[#B6B09F]/60 rounded-full animate-sparkleFloat" style="animation-delay: 5.5s; box-shadow: 0 0 8px rgba(182, 176, 159, 0.5);"></div>
-        </div>
+       
         
         <div class="max-w-7xl mx-auto px-6 relative z-10">
             <div class="text-center mb-12 fade-up relative">
-                <!-- Decorative background elements -->
-                <div class="absolute -top-6 left-1/2 transform -translate-x-1/2 w-40 h-40 bg-gradient-to-r from-[#B6B09F]/10 via-transparent to-[#B6B09F]/10 rounded-full blur-3xl animate-pulse"></div>
-                
                 <div class="relative z-10">
                     <!-- Enhanced heading with gradient and decorative elements -->
                     <div class="relative inline-block">
-                        <h2 class="seasons-font text-3xl md:text-5xl font-semibold mb-4 bg-gradient-to-r from-[#B6B09F] via-gray-800 to-[#B6B09F] bg-clip-text text-transparent animate-gradient relative">
+                        <h2 class="seasons-font text-3xl md:text-5xl font-semibold mb-4 bg-gradient-to-r from-[#B6B09F] via-gray-800 to-[#B6B09F] bg-clip-text text-transparent  relative">
                             Our Collections
-                            
-                            <!-- Decorative underline with animation -->
-                            <span class="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-24 h-0.5 bg-gradient-to-r from-transparent via-[#B6B09F] to-transparent animate-shimmer"></span>
-                            
+
                             <!-- Side decorative elements -->
                             <span class="absolute -left-8 top-1/2 transform -translate-y-1/2 w-4 h-4 border border-[#B6B09F]/30 rounded-full animate-pulse" style="animation-delay: 0.5s;"></span>
                             <span class="absolute -right-8 top-1/2 transform -translate-y-1/2 w-4 h-4 border border-[#B6B09F]/30 rounded-full animate-pulse" style="animation-delay: 1s;"></span>
                             
-                            <!-- Top decorative dots -->
-                            <div class="absolute -top-6 left-1/2 transform -translate-x-1/2 flex space-x-2">
-                                <span class="w-1.5 h-1.5 bg-[#B6B09F] rounded-full animate-bounce" style="animation-delay: 0s;"></span>
-                                <span class="w-1.5 h-1.5 bg-[#B6B09F] rounded-full animate-bounce" style="animation-delay: 0.2s;"></span>
-                                <span class="w-1.5 h-1.5 bg-[#B6B09F] rounded-full animate-bounce" style="animation-delay: 0.4s;"></span>
-                            </div>
+                            
                         </h2>
                     </div>
                     
@@ -856,10 +861,14 @@
                     <button class="product-filter px-3 py-2 sm:px-4 sm:py-2 text-sm sm:text-base rounded-full border border-black hover:bg-black hover:text-white transition w-full max-w-[200px] sm:w-auto sm:max-w-none" data-filter="all">All</button>
                     
                     <!-- Bottom row on mobile - three buttons side by side -->
-                    <div class="flex justify-center gap-2 sm:gap-3 w-full sm:w-auto">
-                        <button class="product-filter px-3 py-2 sm:px-4 sm:py-2 text-sm sm:text-base rounded-full border border-black hover:bg-black hover:text-white transition flex-1 max-w-[90px] sm:flex-none sm:max-w-none" data-filter="bracelets">Bracelets</button>
-                        <button class="product-filter px-3 py-2 sm:px-4 sm:py-2 text-sm sm:text-base rounded-full border border-black hover:bg-black hover:text-white transition flex-1 max-w-[85px] sm:flex-none sm:max-w-none" data-filter="earrings">Earrings</button>
-                        <button class="product-filter px-3 py-2 sm:px-4 sm:py-2 text-sm sm:text-base rounded-full border border-black hover:bg-black hover:text-white transition flex-1 max-w-[95px] sm:flex-none sm:max-w-none" data-filter="necklaces">Necklaces</button>
+                    <div class="flex justify-center gap-2 sm:gap-3 w-full sm:w-auto flex-wrap">
+                        <button class="product-filter px-3 py-2 sm:px-4 sm:py-2 text-sm sm:text-base rounded-full border border-black hover:bg-black hover:text-white transition" data-filter="new-arrivals">New Arrivals</button>
+                        <button class="product-filter px-3 py-2 sm:px-4 sm:py-2 text-sm sm:text-base rounded-full border border-black hover:bg-black hover:text-white transition" data-filter="jewellery-set">Jewellery Set</button>
+                        <button class="product-filter px-3 py-2 sm:px-4 sm:py-2 text-sm sm:text-base rounded-full border border-black hover:bg-black hover:text-white transition" data-filter="earrings">Earrings</button>
+                        <button class="product-filter px-3 py-2 sm:px-4 sm:py-2 text-sm sm:text-base rounded-full border border-black hover:bg-black hover:text-white transition" data-filter="bracelets">Bracelets</button>
+                        <button class="product-filter px-3 py-2 sm:px-4 sm:py-2 text-sm sm:text-base rounded-full border border-black hover:bg-black hover:text-white transition" data-filter="rings">Rings</button>
+                        <button class="product-filter px-3 py-2 sm:px-4 sm:py-2 text-sm sm:text-base rounded-full border border-black hover:bg-black hover:text-white transition" data-filter="pendent-set">Pendent Set</button>
+                        <button class="product-filter px-3 py-2 sm:px-4 sm:py-2 text-sm sm:text-base rounded-full border border-black hover:bg-black hover:text-white transition" data-filter="necklaces">Necklaces</button>
                     </div>
                 </div>
             </div>
@@ -872,6 +881,16 @@
                             <img src="Images/brace1.jpg" 
                                  alt="Luna Silver Cuff" 
                                  class="product-image w-full h-full object-cover transition duration-300">
+                            <!-- Wishlist Heart Icon -->
+                            <button class="wishlist-btn absolute top-3 right-3 w-10 h-10 bg-white/80 backdrop-blur-sm rounded-full flex items-center justify-center text-gray-600 hover:text-red-500 hover:bg-white transition-all duration-300 z-10" 
+                                    data-id="1" 
+                                    data-name="Silver finish Bracelet" 
+                                    data-price="RIA 185" 
+                                    data-image="Images/brace1.jpg">
+                                <svg class="w-5 h-5 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
+                                </svg>
+                            </button>
                             <div class="quick-view absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0">
                                 <button class="quick-view-btn text-white border border-white px-4 py-2 rounded hover:bg-white hover:text-black transition">
                                     Quick View
@@ -899,6 +918,16 @@
                             <img src="Images/brace2.jpg" 
                                  alt="Luna Silver Cuff" 
                                  class="product-image w-full h-full object-cover transition duration-300">
+                            <!-- Wishlist Heart Icon -->
+                            <button class="wishlist-btn absolute top-3 right-3 w-10 h-10 bg-white/80 backdrop-blur-sm rounded-full flex items-center justify-center text-gray-600 hover:text-red-500 hover:bg-white transition-all duration-300 z-10" 
+                                    data-id="2" 
+                                    data-name="Silver finish Bracelet" 
+                                    data-price="RIA 96" 
+                                    data-image="Images/brace2.jpg">
+                                <svg class="w-5 h-5 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
+                                </svg>
+                            </button>
                             <div class="quick-view absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0">
                                 <button class="quick-view-btn text-white border border-white px-4 py-2 rounded hover:bg-white hover:text-black transition">
                                     Quick View
@@ -925,6 +954,16 @@
                             <img src="Images/brace3.jpg" 
                                  alt="Luna Silver Cuff" 
                                  class="product-image w-full h-full object-cover transition duration-300">
+                            <!-- Wishlist Heart Icon -->
+                            <button class="wishlist-btn absolute top-3 right-3 w-10 h-10 bg-white/80 backdrop-blur-sm rounded-full flex items-center justify-center text-gray-600 hover:text-red-500 hover:bg-white transition-all duration-300 z-10" 
+                                    data-id="3" 
+                                    data-name="Silver finish Bracelet" 
+                                    data-price="RIA 159" 
+                                    data-image="Images/brace3.jpg">
+                                <svg class="w-5 h-5 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
+                                </svg>
+                            </button>
                             <div class="quick-view absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0">
                                 <button class="quick-view-btn text-white border border-white px-4 py-2 rounded hover:bg-white hover:text-black transition">
                                     Quick View
@@ -952,6 +991,16 @@
                             <img src="Images/ear1.jpg" 
                                  alt="Starfall Diamond Studs" 
                                  class="product-image w-full h-full object-cover transition duration-300">
+                            <!-- Wishlist Heart Icon -->
+                            <button class="wishlist-btn absolute top-3 right-3 w-10 h-10 bg-white/80 backdrop-blur-sm rounded-full flex items-center justify-center text-gray-600 hover:text-red-500 hover:bg-white transition-all duration-300 z-10" 
+                                    data-id="4" 
+                                    data-name="Earrings Studs" 
+                                    data-price="RIA 90" 
+                                    data-image="Images/ear1.jpg">
+                                <svg class="w-5 h-5 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
+                                </svg>
+                            </button>
                             <div class="quick-view absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0">
                                 <button class="quick-view-btn text-white border border-white px-4 py-2 rounded hover:bg-white hover:text-black transition">
                                     Quick View
@@ -979,6 +1028,16 @@
                             <img src="Images/ear2.jpg" 
                                  alt="Starfall Diamond Studs" 
                                  class="product-image w-full h-full object-cover transition duration-300">
+                            <!-- Wishlist Heart Icon -->
+                            <button class="wishlist-btn absolute top-3 right-3 w-10 h-10 bg-white/80 backdrop-blur-sm rounded-full flex items-center justify-center text-gray-600 hover:text-red-500 hover:bg-white transition-all duration-300 z-10" 
+                                    data-id="6" 
+                                    data-name="Earrings Studs" 
+                                    data-price="RIA 70" 
+                                    data-image="Images/ear2.jpg">
+                                <svg class="w-5 h-5 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
+                                </svg>
+                            </button>
                             <div class="quick-view absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0">
                                 <button class="quick-view-btn text-white border border-white px-4 py-2 rounded hover:bg-white hover:text-black transition">
                                     Quick View
@@ -1006,6 +1065,16 @@
                             <img src="Images/ear3.jpg" 
                                  alt="Starfall Diamond Studs" 
                                  class="product-image w-full h-full object-cover transition duration-300">
+                            <!-- Wishlist Heart Icon -->
+                            <button class="wishlist-btn absolute top-3 right-3 w-10 h-10 bg-white/80 backdrop-blur-sm rounded-full flex items-center justify-center text-gray-600 hover:text-red-500 hover:bg-white transition-all duration-300 z-10" 
+                                    data-id="7" 
+                                    data-name="Earrings Studs" 
+                                    data-price="RIA 100" 
+                                    data-image="Images/ear3.jpg">
+                                <svg class="w-5 h-5 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
+                                </svg>
+                            </button>
                             <div class="quick-view absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0">
                                 <button class="quick-view-btn text-white border border-white px-4 py-2 rounded hover:bg-white hover:text-black transition">
                                     Quick View
@@ -1033,6 +1102,16 @@
                             <img src="Images/neck2.jpg" 
                                  alt="Celestia Chain Necklace" 
                                  class="product-image w-full h-full object-cover transition duration-300">
+                            <!-- Wishlist Heart Icon -->
+                            <button class="wishlist-btn absolute top-3 right-3 w-10 h-10 bg-white/80 backdrop-blur-sm rounded-full flex items-center justify-center text-gray-600 hover:text-red-500 hover:bg-white transition-all duration-300 z-10" 
+                                    data-id="7" 
+                                    data-name="Celestia Chain Necklace" 
+                                    data-price="RIA 379" 
+                                    data-image="Images/neck2.jpg">
+                                <svg class="w-5 h-5 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
+                                </svg>
+                            </button>
                             <div class="quick-view absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0">
                                 <button class="quick-view-btn text-white border border-white px-4 py-2 rounded hover:bg-white hover:text-black transition">
                                     Quick View
@@ -1060,6 +1139,16 @@
                             <img src="Images/neck3.jpg" 
                                  alt="Celestia Chain Necklace" 
                                  class="product-image w-full h-full object-cover transition duration-300">
+                            <!-- Wishlist Heart Icon -->
+                            <button class="wishlist-btn absolute top-3 right-3 w-10 h-10 bg-white/80 backdrop-blur-sm rounded-full flex items-center justify-center text-gray-600 hover:text-red-500 hover:bg-white transition-all duration-300 z-10" 
+                                    data-id="8" 
+                                    data-name="Celestia Chain Necklace" 
+                                    data-price="RIA 92" 
+                                    data-image="Images/neck3.jpg">
+                                <svg class="w-5 h-5 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
+                                </svg>
+                            </button>
                             <div class="quick-view absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0">
                                 <button class="quick-view-btn text-white border border-white px-4 py-2 rounded hover:bg-white hover:text-black transition">
                                     Quick View
@@ -1079,47 +1168,284 @@
                         </div>
                     </div>
                 </div>
+                
+                <!-- New Arrivals Product -->
+                <div class="product-card fade-up" data-category="new-arrivals" style="animation-delay: 0.7s;">
+                    <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                        <div class="relative overflow-hidden h-64">
+                            <img src="Images/brace4.jpg" 
+                                 alt="Latest Collection Bracelet" 
+                                 class="product-image w-full h-full object-cover transition duration-300">
+                            <button class="wishlist-btn absolute top-2 right-2 z-10 bg-white rounded-full p-2 shadow-md hover:bg-gray-100 transition" 
+                                    data-id="9" 
+                                    data-name="Latest Collection Bracelet" 
+                                    data-price="RIA 250" 
+                                    data-image="Images/brace4.jpg">
+                                <svg class="w-5 h-5 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
+                                </svg>
+                            </button>
+                            <div class="quick-view absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0">
+                                <button class="quick-view-btn text-white border border-white px-4 py-2 rounded hover:bg-white hover:text-black transition">
+                                    Quick View
+                                </button>
+                            </div>
+                        </div>
+                        <div class="p-4">
+                            <h3 class="font-semibold text-lg mb-1">Latest Collection Bracelet</h3>
+                            <p class="text-[#B6B09F] mb-3">Ria-250</p>
+                            <button class="add-to-cart w-full bg-black text-white py-2 px-4 rounded hover:bg-opacity-90 transition" 
+                                    data-id="9" 
+                                    data-name="Latest Collection Bracelet" 
+                                    data-price="RIA 250" 
+                                    data-image="Images/brace4.jpg">
+                                Add to Cart
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Jewellery Set Product -->
+                <div class="product-card fade-up" data-category="jewellery-set" style="animation-delay: 0.8s;">
+                    <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                        <div class="relative overflow-hidden h-64">
+                            <img src="Images/brace5.jpg" 
+                                 alt="Complete Jewellery Set" 
+                                 class="product-image w-full h-full object-cover transition duration-300">
+                            <button class="wishlist-btn absolute top-2 right-2 z-10 bg-white rounded-full p-2 shadow-md hover:bg-gray-100 transition" 
+                                    data-id="10" 
+                                    data-name="Complete Jewellery Set" 
+                                    data-price="RIA 450" 
+                                    data-image="Images/brace5.jpg">
+                                <svg class="w-5 h-5 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
+                                </svg>
+                            </button>
+                            <div class="quick-view absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0">
+                                <button class="quick-view-btn text-white border border-white px-4 py-2 rounded hover:bg-white hover:text-black transition">
+                                    Quick View
+                                </button>
+                            </div>
+                        </div>
+                        <div class="p-4">
+                            <h3 class="font-semibold text-lg mb-1">Complete Jewellery Set</h3>
+                            <p class="text-[#B6B09F] mb-3">Ria-450</p>
+                            <button class="add-to-cart w-full bg-black text-white py-2 px-4 rounded hover:bg-opacity-90 transition" 
+                                    data-id="10" 
+                                    data-name="Complete Jewellery Set" 
+                                    data-price="RIA 450" 
+                                    data-image="Images/brace5.jpg">
+                                Add to Cart
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Rings Product -->
+                <div class="product-card fade-up" data-category="rings" style="animation-delay: 0.9s;">
+                    <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                        <div class="relative overflow-hidden h-64">
+                            <img src="Images/brace6.jpg" 
+                                 alt="Elegant Ring Collection" 
+                                 class="product-image w-full h-full object-cover transition duration-300">
+                            <button class="wishlist-btn absolute top-2 right-2 z-10 bg-white rounded-full p-2 shadow-md hover:bg-gray-100 transition" 
+                                    data-id="11" 
+                                    data-name="Elegant Ring Collection" 
+                                    data-price="RIA 180" 
+                                    data-image="Images/brace6.jpg">
+                                <svg class="w-5 h-5 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
+                                </svg>
+                            </button>
+                            <div class="quick-view absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0">
+                                <button class="quick-view-btn text-white border border-white px-4 py-2 rounded hover:bg-white hover:text-black transition">
+                                    Quick View
+                                </button>
+                            </div>
+                        </div>
+                        <div class="p-4">
+                            <h3 class="font-semibold text-lg mb-1">Elegant Ring Collection</h3>
+                            <p class="text-[#B6B09F] mb-3">Ria-180</p>
+                            <button class="add-to-cart w-full bg-black text-white py-2 px-4 rounded hover:bg-opacity-90 transition" 
+                                    data-id="11" 
+                                    data-name="Elegant Ring Collection" 
+                                    data-price="RIA 180" 
+                                    data-image="Images/brace6.jpg">
+                                Add to Cart
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Pendent Set Product -->
+                <div class="product-card fade-up" data-category="pendent-set" style="animation-delay: 1.0s;">
+                    <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                        <div class="relative overflow-hidden h-64">
+                            <img src="Images/brace7.jpg" 
+                                 alt="Beautiful Pendent Set" 
+                                 class="product-image w-full h-full object-cover transition duration-300">
+                            <button class="wishlist-btn absolute top-2 right-2 z-10 bg-white rounded-full p-2 shadow-md hover:bg-gray-100 transition" 
+                                    data-id="12" 
+                                    data-name="Beautiful Pendent Set" 
+                                    data-price="RIA 320" 
+                                    data-image="Images/brace7.jpg">
+                                <svg class="w-5 h-5 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
+                                </svg>
+                            </button>
+                            <div class="quick-view absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0">
+                                <button class="quick-view-btn text-white border border-white px-4 py-2 rounded hover:bg-white hover:text-black transition">
+                                    Quick View
+                                </button>
+                            </div>
+                        </div>
+                        <div class="p-4">
+                            <h3 class="font-semibold text-lg mb-1">Beautiful Pendent Set</h3>
+                            <p class="text-[#B6B09F] mb-3">Ria-320</p>
+                            <button class="add-to-cart w-full bg-black text-white py-2 px-4 rounded hover:bg-opacity-90 transition" 
+                                    data-id="12" 
+                                    data-name="Beautiful Pendent Set" 
+                                    data-price="RIA 320" 
+                                    data-image="Images/brace7.jpg">
+                                Add to Cart
+                            </button>
+                        </div>
+                    </div>
+                </div>
 
-
-
+            </div>
+        </div>
+        
+        <!-- Offers Section -->
+        <div class="py-16 bg-gradient-to-r from-[#B6B09F]/10 via-white to-[#B6B09F]/10 relative overflow-hidden">
+            <!-- Decorative background elements -->
+            <div class="absolute inset-0 pointer-events-none">
+                <div class="absolute top-10 left-10 w-6 h-6 border-2 border-[#B6B09F]/20 rounded-full animate-pulse" style="animation-delay: 0s;"></div>
+                <div class="absolute top-20 right-20 w-4 h-4 bg-[#B6B09F]/30 rounded-full animate-bounce" style="animation-delay: 1s;"></div>
+                <div class="absolute bottom-10 left-1/4 w-8 h-8 border-2 border-[#B6B09F]/15 transform rotate-45 animate-pulse" style="animation-delay: 2s;"></div>
+                <div class="absolute bottom-20 right-1/3 w-5 h-5 bg-[#B6B09F]/25 rounded-full animate-bounce" style="animation-delay: 3s;"></div>
+            </div>
+            
+            <div class="max-w-7xl mx-auto px-6 relative z-10">
+                <div class="text-center mb-12 fade-up">
+                    <h2 class="seasons-font text-3xl md:text-4xl font-semibold mb-4 bg-gradient-to-r from-[#B6B09F] via-gray-800 to-[#B6B09F] bg-clip-text text-transparent">
+                        Special Offers
+                    </h2>
+                    <p class="text-gray-600 max-w-2xl mx-auto">
+                        Don't miss out on these exclusive deals for our beautiful jewelry collection
+                    </p>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+                    <!-- First Order Offer -->
+                    <div class="offer-card group bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden border border-[#B6B09F]/20 hover:border-[#B6B09F]/40 transform hover:scale-105 fade-up" style="animation-delay: 0.2s;">
+                        <div class="relative p-8 text-center">
+                            <!-- Decorative corner elements -->
+                            <div class="absolute top-4 left-4 w-6 h-6 border-l-2 border-t-2 border-[#B6B09F]/30 group-hover:border-[#B6B09F]/60 transition-colors duration-300"></div>
+                            <div class="absolute top-4 right-4 w-6 h-6 border-r-2 border-t-2 border-[#B6B09F]/30 group-hover:border-[#B6B09F]/60 transition-colors duration-300"></div>
+                            <div class="absolute bottom-4 left-4 w-6 h-6 border-l-2 border-b-2 border-[#B6B09F]/30 group-hover:border-[#B6B09F]/60 transition-colors duration-300"></div>
+                            <div class="absolute bottom-4 right-4 w-6 h-6 border-r-2 border-b-2 border-[#B6B09F]/30 group-hover:border-[#B6B09F]/60 transition-colors duration-300"></div>
+                            
+                            <!-- Offer icon -->
+                            <div class="w-16 h-16 mx-auto mb-6 bg-gradient-to-br from-[#B6B09F] to-gray-600 rounded-full flex items-center justify-center group-hover:rotate-12 transition-transform duration-300">
+                                <i class="fas fa-gift text-white text-2xl"></i>
+                            </div>
+                            
+                            <!-- Offer details -->
+                            <div class="mb-6">
+                                <div class="text-4xl font-bold text-[#B6B09F] mb-2 group-hover:scale-110 transition-transform duration-300">15%</div>
+                                <div class="text-xl font-semibold text-gray-800 mb-2">OFF</div>
+                                <div class="text-gray-600">On Your First Order</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Buy 2 Offer -->
+                    <div class="offer-card group bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden border border-[#B6B09F]/20 hover:border-[#B6B09F]/40 transform hover:scale-105 fade-up" style="animation-delay: 0.4s;">
+                        <div class="relative p-8 text-center">
+                            <!-- Decorative corner elements -->
+                            <div class="absolute top-4 left-4 w-6 h-6 border-l-2 border-t-2 border-[#B6B09F]/30 group-hover:border-[#B6B09F]/60 transition-colors duration-300"></div>
+                            <div class="absolute top-4 right-4 w-6 h-6 border-r-2 border-t-2 border-[#B6B09F]/30 group-hover:border-[#B6B09F]/60 transition-colors duration-300"></div>
+                            <div class="absolute bottom-4 left-4 w-6 h-6 border-l-2 border-b-2 border-[#B6B09F]/30 group-hover:border-[#B6B09F]/60 transition-colors duration-300"></div>
+                            <div class="absolute bottom-4 right-4 w-6 h-6 border-r-2 border-b-2 border-[#B6B09F]/30 group-hover:border-[#B6B09F]/60 transition-colors duration-300"></div>
+                            
+                            <!-- Offer icon -->
+                            <div class="w-16 h-16 mx-auto mb-6 bg-gradient-to-br from-[#B6B09F] to-gray-600 rounded-full flex items-center justify-center group-hover:rotate-12 transition-transform duration-300">
+                                <i class="fas fa-shopping-bag text-white text-2xl"></i>
+                            </div>
+                            
+                            <!-- Offer details -->
+                            <div class="mb-6">
+                                <div class="text-2xl font-bold text-gray-800 mb-2">Buy 2 Items</div>
+                                <div class="text-4xl font-bold text-[#B6B09F] mb-2 group-hover:scale-110 transition-transform duration-300">10%</div>
+                                <div class="text-xl font-semibold text-gray-800 mb-2">OFF</div>
+                                <div class="text-gray-600">Automatic Discount</div>
+                            </div>  
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Additional info -->
+                <div class="text-center mt-8 fade-up" style="animation-delay: 0.6s;">
+                    <p class="text-sm text-gray-500">
+                        * Offers cannot be combined. Terms and conditions apply.
+                    </p>
+                </div>
+                
+                <!-- Category Labels -->
+                <div class="text-center mt-12 fade-up" style="animation-delay: 0.8s;">
+                    <div class="flex flex-wrap justify-center items-center gap-6 max-w-4xl mx-auto">
+                        <div class="category-badge group">
+                            <div class="w-24 h-24 md:w-28 md:h-28 rounded-full border-2 border-[#B6B09F]/30 group-hover:border-[#B6B09F] flex items-center justify-center bg-white/80 backdrop-blur-sm shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105">
+                                <span class="text-sm md:text-base font-semibold text-gray-800 group-hover:text-[#B6B09F] transition-colors duration-300">WESTERN</span>
+                            </div>
+                            <p class="text-xs text-gray-600 mt-2 font-medium">WESTERN</p>
+                        </div>
+                        
+                        <div class="category-badge group">
+                            <div class="w-24 h-24 md:w-28 md:h-28 rounded-full border-2 border-[#B6B09F]/30 group-hover:border-[#B6B09F] flex items-center justify-center bg-white/80 backdrop-blur-sm shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105">
+                                <span class="text-sm md:text-base font-semibold text-gray-800 group-hover:text-[#B6B09F] transition-colors duration-300">ETHNIC</span>
+                            </div>
+                            <p class="text-xs text-gray-600 mt-2 font-medium">ETHNIC</p>
+                        </div>
+                        
+                        <div class="category-badge group">
+                            <div class="w-24 h-24 md:w-28 md:h-28 rounded-full border-2 border-[#B6B09F]/30 group-hover:border-[#B6B09F] flex items-center justify-center bg-white/80 backdrop-blur-sm shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105">
+                                <span class="text-sm md:text-base font-semibold text-gray-800 group-hover:text-[#B6B09F] transition-colors duration-300">DEMI FINE</span>
+                            </div>
+                            <p class="text-xs text-gray-600 mt-2 font-medium">DEMI FINE</p>
+                        </div>
+                        
+                        <div class="category-badge group">
+                            <div class="w-24 h-24 md:w-28 md:h-28 rounded-full border-2 border-[#B6B09F]/30 group-hover:border-[#B6B09F] flex items-center justify-center bg-white/80 backdrop-blur-sm shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105">
+                                <span class="text-sm md:text-base font-semibold text-gray-800 group-hover:text-[#B6B09F] transition-colors duration-300">LUXE</span>
+                            </div>
+                            <p class="text-xs text-gray-600 mt-2 font-medium">LUXURY</p>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
     <!-- Social Section -->
     <section id="social" class="py-20 bg-gradient-to-br from-white via-gray-400 to-[#F2F2F2] relative overflow-hidden">
-        <!-- Jewelry Particles Background -->
-        <div class="absolute inset-0 pointer-events-none">
-            <!-- Diamond particles -->
-            <div class="absolute top-12 left-20 w-8 h-8 border-4 border-[#B6B09F]/30 transform rotate-45 animate-floatAcross" style="animation-delay: 0.5s;"></div>
-            <div class="absolute top-32 right-24 w-6 h-6 border-4 border-gray-600/20 transform rotate-45 animate-floatDiagonal" style="animation-delay: 2.5s;"></div>
-            <div class="absolute bottom-16 left-1/3 w-10 h-10 border-4 border-[#B6B09F]/25 transform rotate-45 animate-floatAcross" style="animation-delay: 4.5s;"></div>
-            
-            <!-- Gem particles -->
-            <div class="absolute top-20 right-1/4 w-8 h-12 bg-gradient-to-b from-[#B6B09F]/40 to-gray-600/30 rounded-full animate-floatDiagonal" style="animation-delay: 1.5s; box-shadow: 0 0 20px rgba(182, 176, 159, 0.3);"></div>
-            <div class="absolute bottom-24 right-16 w-6 h-10 bg-gradient-to-b from-gray-600/30 to-[#B6B09F]/40 rounded-full animate-floatAcross" style="animation-delay: 3.5s; box-shadow: 0 0 15px rgba(128, 128, 128, 0.2);"></div>
-            
-            <!-- Sparkle particles -->
-            <div class="absolute top-40 left-1/4 w-4 h-4 bg-[#B6B09F]/50 rounded-full animate-sparkleFloat" style="animation-delay: 1s; box-shadow: 0 0 10px rgba(182, 176, 159, 0.4);"></div>
-            <div class="absolute bottom-32 left-12 w-6 h-6 bg-gray-600/40 rounded-full animate-sparkleFloat" style="animation-delay: 3s; box-shadow: 0 0 12px rgba(128, 128, 128, 0.3);"></div>
-            <div class="absolute top-16 right-1/3 w-3 h-3 bg-[#B6B09F]/60 rounded-full animate-sparkleFloat" style="animation-delay: 5s; box-shadow: 0 0 8px rgba(182, 176, 159, 0.5);"></div>
-        </div>
-        
-        <div class="max-w-6xl mx-auto px-6 text-center relative z-10">
+      
+        <div class="max-w-6xl mx-auto px-4 md:px-6 text-center relative z-10">
             <div class="fade-up">
-                <h2 class="seasons-font text-4xl font-bold md:text-5xl mb-6">Connect With Us</h2>
-                <p class="max-w-2xl mx-auto mb-8 text-2xl">Follow us for behind-the-scenes and exclusive drops.</p>
+                <h2 class="seasons-font text-3xl md:text-4xl lg:text-5xl font-bold mb-4 md:mb-6">Connect With Us</h2>
+                <p class="max-w-2xl mx-auto mb-6 md:mb-8 text-lg md:text-xl lg:text-2xl px-2">Follow us for behind-the-scenes and exclusive drops.</p>
             </div>
             
-            <div class="flex justify-center space-x-12  fade-up relative" style="animation-delay: 0.3s;">
+            <div class="flex justify-center space-x-4 md:space-x-8 lg:space-x-12 fade-up relative" style="animation-delay: 0.3s;">
                 <!-- Decorative background elements -->
                 <div class="absolute inset-0 bg-gradient-to-r from-transparent via-[#B6B09F]/5 to-transparent rounded-full blur-2xl"></div>
                 <div class="absolute -top-4 left-1/2 transform -translate-x-1/2 w-32 h-1 bg-gradient-to-r from-transparent via-[#B6B09F]/30 to-transparent rounded-full"></div>
                 
                 <!-- Facebook Icon -->
                 <a href="https://www.facebook.com/profile.php?id=61574443553150" class="social-icon relative group">
-                    <div class="relative w-20 h-20 bg-white/80 backdrop-blur-sm rounded-full border-2 border-[#B6B09F]/20 flex items-center justify-center hover:border-[#4267B2] hover:bg-gradient-to-br hover:from-[#4267B2]/10 hover:to-[#4267B2]/5 transition-all duration-500 hover:scale-110 hover:-translate-y-2 hover:shadow-xl hover:shadow-[#4267B2]/25 group">
-                        <i class="text-4xl fab fa-facebook text-gray-700 group-hover:text-[#4267B2] transition-all duration-300"></i>
+                    <div class="relative w-16 h-16 md:w-20 md:h-20 bg-white/80 backdrop-blur-sm rounded-full border-2 border-[#B6B09F]/20 flex items-center justify-center hover:border-[#4267B2] hover:bg-gradient-to-br hover:from-[#4267B2]/10 hover:to-[#4267B2]/5 transition-all duration-500 hover:scale-110 hover:-translate-y-2 hover:shadow-xl hover:shadow-[#4267B2]/25 group">
+                        <i class="text-2xl md:text-4xl fab fa-facebook text-gray-700 group-hover:text-[#4267B2] transition-all duration-300"></i>
                         
                         <!-- Decorative ring -->
                         <div class="absolute inset-0 rounded-full border-2 border-[#4267B2]/0 group-hover:border-[#4267B2]/30 transition-all duration-300 animate-pulse opacity-0 group-hover:opacity-100"></div>
@@ -1139,8 +1465,8 @@
                 
                 <!-- Instagram Icon -->
                 <a href="https://www.instagram.com/gauravik_collection/" class="social-icon relative group">
-                    <div class="relative w-20 h-20 bg-white/80 backdrop-blur-sm rounded-full border-2 border-[#B6B09F]/20 flex items-center justify-center hover:border-[#E1306C] hover:bg-gradient-to-br hover:from-[#E1306C]/10 hover:to-[#F56040]/5 transition-all duration-500 hover:scale-110 hover:-translate-y-2 hover:shadow-xl hover:shadow-[#E1306C]/25 group">
-                        <i class="text-4xl fab fa-instagram text-gray-700 group-hover:text-[#E1306C] transition-all duration-300"></i>
+                    <div class="relative w-16 h-16 md:w-20 md:h-20 bg-white/80 backdrop-blur-sm rounded-full border-2 border-[#B6B09F]/20 flex items-center justify-center hover:border-[#E1306C] hover:bg-gradient-to-br hover:from-[#E1306C]/10 hover:to-[#F56040]/5 transition-all duration-500 hover:scale-110 hover:-translate-y-2 hover:shadow-xl hover:shadow-[#E1306C]/25 group">
+                        <i class="text-2xl md:text-4xl fab fa-instagram text-gray-700 group-hover:text-[#E1306C] transition-all duration-300"></i>
                         
                         <!-- Decorative ring -->
                         <div class="absolute inset-0 rounded-full border-2 border-[#E1306C]/0 group-hover:border-[#E1306C]/30 transition-all duration-300 animate-pulse opacity-0 group-hover:opacity-100"></div>
@@ -1158,6 +1484,27 @@
                     <span class="sr-only">Instagram</span>
                 </a>
                 
+                <!-- WhatsApp Icon -->
+                <a href="https://wa.me/917078718910" class="social-icon relative group" target="_blank">
+                    <div class="relative w-16 h-16 md:w-20 md:h-20 bg-white/80 backdrop-blur-sm rounded-full border-2 border-[#B6B09F]/20 flex items-center justify-center hover:border-[#25D366] hover:bg-gradient-to-br hover:from-[#25D366]/10 hover:to-[#25D366]/5 transition-all duration-500 hover:scale-110 hover:-translate-y-2 hover:shadow-xl hover:shadow-[#25D366]/25 group">
+                        <i class="text-2xl md:text-4xl fab fa-whatsapp text-gray-700 group-hover:text-[#25D366] transition-all duration-300"></i>
+                        
+                        <!-- Decorative ring -->
+                        <div class="absolute inset-0 rounded-full border-2 border-[#25D366]/0 group-hover:border-[#25D366]/30 transition-all duration-300 animate-pulse opacity-0 group-hover:opacity-100"></div>
+                        
+                        <!-- Floating particles -->
+                        <div class="absolute -top-2 -right-2 w-3 h-3 bg-[#25D366]/40 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300 animate-bounce"></div>
+                        <div class="absolute -bottom-2 -left-2 w-2 h-2 bg-[#25D366]/30 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300 animate-pulse" style="animation-delay: 0.2s;"></div>
+                    </div>
+                    
+                    <!-- Label -->
+                    <div class="absolute -bottom-8 left-1/2 transform -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-all duration-300">
+                        <span class="text-sm font-medium text-[#25D366] bg-white/90 px-3 py-1 rounded-full shadow-lg">WhatsApp</span>
+                    </div>
+                    
+                    <span class="sr-only">WhatsApp</span>
+                </a>
+                
                 <!-- Decorative bottom element -->
                 <div class="absolute -bottom-4 left-1/2 transform -translate-x-1/2 w-24 h-1 bg-gradient-to-r from-transparent via-[#B6B09F]/30 to-transparent rounded-full"></div>
             </div>
@@ -1169,11 +1516,9 @@
         <div class="max-w-7xl mx-auto px-6 relative z-10">
             <div class=" mb-2">
                 <div class="text-center">
-                    <h3 class="seasons-font text-2xl mb-4">GAURAVIK</h3>
-                    <p class="mb-4">Adorn Your Beauty with our handcrafted fine jewelry collections.</p>
+                    <h3 class="seasons-font text-xl md:text-2xl mb-4">GAURAVIK</h3>
+                    <p class="mb-4 text-sm md:text-base leading-relaxed max-w-4xl mx-auto px-4 md:px-0">Gauravik is an online jewellery store offering a handpicked collection of elegant and trendy pieces from trusted makers. From delicate earrings to statement necklaces, we bring you beautiful jewellery that suits every style and occasion. Shop easily online and get your favourites delivered across India.</p>
                 </div>
-                
-                
             </div>
             
             <div class="border-t border-white border-opacity-20 pt-8 text-center">
@@ -1535,6 +1880,322 @@
                         cartDrawer.classList.add('open');
                     });
                 });
+            });
+            
+            // Offer buttons functionality
+            document.querySelectorAll('.offer-btn').forEach(button => {
+                button.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    // Scroll to products section
+                    const productsSection = document.getElementById('products');
+                    if (productsSection) {
+                        productsSection.scrollIntoView({ behavior: 'smooth' });
+                    }
+                    
+                    // Show notification about the offer
+                    const offerText = this.closest('.offer-card').querySelector('h3').textContent;
+                    const notification = document.createElement('div');
+                    notification.className = 'fixed top-4 right-4 bg-green-500 text-white px-6 py-3 rounded-lg shadow-lg z-50 transform translate-x-full transition-transform duration-300';
+                    notification.textContent = `Offer applied: ${offerText}`;
+                    
+                    document.body.appendChild(notification);
+                    
+                    // Animate notification
+                    setTimeout(() => {
+                        notification.classList.remove('translate-x-full');
+                    }, 100);
+                    
+                    // Remove notification after 3 seconds
+                    setTimeout(() => {
+                        notification.classList.add('translate-x-full');
+                        setTimeout(() => {
+                            if (notification.parentNode) {
+                                document.body.removeChild(notification);
+                            }
+                        }, 300);
+                    }, 3000);
+                });
+            });
+            
+            // Search functionality
+            let wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
+            
+            function performSearch(query) {
+                const products = document.querySelectorAll('.product-card');
+                const searchTerm = query.toLowerCase().trim();
+                
+                if (searchTerm === '') {
+                    products.forEach(product => {
+                        product.style.display = 'block';
+                    });
+                    return;
+                }
+                
+                products.forEach(product => {
+                    const productName = product.querySelector('h3').textContent.toLowerCase();
+                    const productCategory = product.getAttribute('data-category') || '';
+                    
+                    if (productName.includes(searchTerm) || productCategory.includes(searchTerm)) {
+                        product.style.display = 'block';
+                    } else {
+                        product.style.display = 'none';
+                    }
+                });
+                
+                // Scroll to products section
+                const productsSection = document.getElementById('products');
+                if (productsSection) {
+                    productsSection.scrollIntoView({ behavior: 'smooth' });
+                }
+            }
+            
+            // Desktop search
+            const searchInput = document.getElementById('searchInput');
+            const searchButton = document.getElementById('searchButton');
+            
+            if (searchButton && searchInput) {
+                searchButton.addEventListener('click', function() {
+                    performSearch(searchInput.value);
+                });
+                
+                searchInput.addEventListener('keypress', function(e) {
+                    if (e.key === 'Enter') {
+                        performSearch(this.value);
+                    }
+                });
+            }
+            
+            // Mobile search
+            const mobileSearchButton = document.getElementById('mobileSearchButton');
+            const mobileSearchOverlay = document.getElementById('mobileSearchOverlay');
+            const mobileSearchModal = document.getElementById('mobileSearchModal');
+            const closeMobileSearch = document.getElementById('closeMobileSearch');
+            const mobileSearchInput = document.getElementById('mobileSearchInput');
+            const mobileSearchSubmit = document.getElementById('mobileSearchSubmit');
+            
+            if (mobileSearchButton && mobileSearchOverlay) {
+                mobileSearchButton.addEventListener('click', function() {
+                    mobileSearchOverlay.classList.remove('opacity-0', 'invisible');
+                    mobileSearchModal.classList.remove('scale-95');
+                    mobileSearchModal.classList.add('scale-100');
+                    setTimeout(() => mobileSearchInput.focus(), 300);
+                });
+                
+                closeMobileSearch.addEventListener('click', function() {
+                    mobileSearchOverlay.classList.add('opacity-0', 'invisible');
+                    mobileSearchModal.classList.remove('scale-100');
+                    mobileSearchModal.classList.add('scale-95');
+                });
+                
+                mobileSearchOverlay.addEventListener('click', function(e) {
+                    if (e.target === mobileSearchOverlay) {
+                        closeMobileSearch.click();
+                    }
+                });
+                
+                mobileSearchSubmit.addEventListener('click', function() {
+                    performSearch(mobileSearchInput.value);
+                    closeMobileSearch.click();
+                });
+                
+                mobileSearchInput.addEventListener('keypress', function(e) {
+                    if (e.key === 'Enter') {
+                        performSearch(this.value);
+                        closeMobileSearch.click();
+                    }
+                });
+            }
+            
+            // Search suggestions
+            document.querySelectorAll('.search-suggestion').forEach(suggestion => {
+                suggestion.addEventListener('click', function() {
+                    const query = this.textContent;
+                    mobileSearchInput.value = query;
+                    performSearch(query);
+                    closeMobileSearch.click();
+                });
+            });
+            
+            // Wishlist functionality
+            const wishlistButton = document.getElementById('wishlistButton');
+            const wishlistDrawer = document.getElementById('wishlistDrawer');
+            const closeWishlist = document.getElementById('closeWishlist');
+            const wishlistItems = document.getElementById('wishlistItems');
+            const wishlistBadge = document.getElementById('wishlistBadge');
+            const emptyWishlistMessage = document.getElementById('emptyWishlistMessage');
+            const wishlistActions = document.getElementById('wishlistActions');
+            
+            function updateWishlist() {
+                wishlistItems.innerHTML = '';
+                
+                if (wishlist.length === 0) {
+                    wishlistItems.appendChild(emptyWishlistMessage);
+                    wishlistActions.classList.add('hidden');
+                    wishlistBadge.classList.add('hidden');
+                } else {
+                    if (emptyWishlistMessage.parentNode) {
+                        emptyWishlistMessage.remove();
+                    }
+                    wishlistActions.classList.remove('hidden');
+                    wishlistBadge.classList.remove('hidden');
+                    wishlistBadge.textContent = wishlist.length;
+                    
+                    wishlist.forEach(item => {
+                        const wishlistItem = document.createElement('div');
+                        wishlistItem.className = 'flex items-center space-x-4 p-4 border border-gray-200 rounded-lg';
+                        wishlistItem.innerHTML = `
+                            <img src="${item.image}" alt="${item.name}" class="w-16 h-16 object-cover rounded">
+                            <div class="flex-1">
+                                <h4 class="font-semibold">${item.name}</h4>
+                                <p class="text-[#B6B09F]">${item.price}</p>
+                            </div>
+                            <div class="flex space-x-2">
+                                <button class="add-to-cart-from-wishlist bg-[#B6B09F] text-white px-3 py-1 rounded text-sm hover:bg-opacity-90 transition" 
+                                        data-id="${item.id}" data-name="${item.name}" data-price="${item.price}" data-image="${item.image}">
+                                    Add to Cart
+                                </button>
+                                <button class="remove-from-wishlist text-red-500 hover:text-red-700 transition" data-id="${item.id}">
+                                    <i class="fas fa-trash text-sm"></i>
+                                </button>
+                            </div>
+                        `;
+                        wishlistItems.appendChild(wishlistItem);
+                    });
+                }
+                
+                localStorage.setItem('wishlist', JSON.stringify(wishlist));
+            }
+            
+            // Wishlist drawer toggle
+            if (wishlistButton && wishlistDrawer) {
+                wishlistButton.addEventListener('click', function() {
+                    wishlistDrawer.classList.add('open');
+                });
+                
+                closeWishlist.addEventListener('click', function() {
+                    wishlistDrawer.classList.remove('open');
+                });
+            }
+            
+            // Add to wishlist
+            document.addEventListener('click', function(e) {
+                if (e.target.closest('.wishlist-btn')) {
+                    const button = e.target.closest('.wishlist-btn');
+                    const id = button.getAttribute('data-id');
+                    const name = button.getAttribute('data-name');
+                    const price = button.getAttribute('data-price');
+                    const image = button.getAttribute('data-image');
+                    
+                    const existingItem = wishlist.find(item => item.id === id);
+                    
+                    if (existingItem) {
+                        // Remove from wishlist
+                        wishlist = wishlist.filter(item => item.id !== id);
+                        button.querySelector('svg').classList.remove('text-red-500');
+                        button.querySelector('svg').classList.add('text-gray-600');
+                    } else {
+                        // Add to wishlist
+                        wishlist.push({ id, name, price, image });
+                        button.querySelector('svg').classList.remove('text-gray-600');
+                        button.querySelector('svg').classList.add('text-red-500');
+                    }
+                    
+                    updateWishlist();
+                    
+                    // Add animation
+                    button.classList.add('animate-pulse');
+                    setTimeout(() => {
+                        button.classList.remove('animate-pulse');
+                    }, 500);
+                }
+                
+                // Remove from wishlist
+                if (e.target.closest('.remove-from-wishlist')) {
+                    const button = e.target.closest('.remove-from-wishlist');
+                    const id = button.getAttribute('data-id');
+                    wishlist = wishlist.filter(item => item.id !== id);
+                    updateWishlist();
+                    
+                    // Update heart icon on product card
+                    const productWishlistBtn = document.querySelector(`.wishlist-btn[data-id="${id}"]`);
+                    if (productWishlistBtn) {
+                        productWishlistBtn.querySelector('svg').classList.remove('text-red-500');
+                        productWishlistBtn.querySelector('svg').classList.add('text-gray-600');
+                    }
+                }
+                
+                // Add to cart from wishlist
+                if (e.target.closest('.add-to-cart-from-wishlist')) {
+                    const button = e.target.closest('.add-to-cart-from-wishlist');
+                    const id = button.getAttribute('data-id');
+                    const name = button.getAttribute('data-name');
+                    const price = parseFloat(button.getAttribute('data-price').replace('RIA ', ''));
+                    const image = button.getAttribute('data-image');
+                    
+                    const existingItem = cart.find(item => item.id === id);
+                    
+                    if (existingItem) {
+                        existingItem.quantity += 1;
+                    } else {
+                        cart.push({ id, name, price, image, quantity: 1 });
+                    }
+                    
+                    updateCart();
+                }
+            });
+            
+            // Clear wishlist
+            if (document.getElementById('clearWishlist')) {
+                document.getElementById('clearWishlist').addEventListener('click', function() {
+                    if (confirm('Are you sure you want to clear your wishlist?')) {
+                        wishlist = [];
+                        updateWishlist();
+                        
+                        // Reset all heart icons
+                        document.querySelectorAll('.wishlist-btn svg').forEach(icon => {
+                            icon.classList.remove('text-red-500');
+                            icon.classList.add('text-gray-600');
+                        });
+                    }
+                });
+            }
+            
+            // Add all to cart
+            if (document.getElementById('addAllToCart')) {
+                document.getElementById('addAllToCart').addEventListener('click', function() {
+                    wishlist.forEach(item => {
+                        const existingItem = cart.find(cartItem => cartItem.id === item.id);
+                        
+                        if (existingItem) {
+                            existingItem.quantity += 1;
+                        } else {
+                            cart.push({
+                                id: item.id,
+                                name: item.name,
+                                price: parseFloat(item.price.replace('RIA ', '')),
+                                image: item.image,
+                                quantity: 1
+                            });
+                        }
+                    });
+                    
+                    updateCart();
+                    wishlistDrawer.classList.remove('open');
+                    cartDrawer.classList.add('open');
+                });
+            }
+            
+            // Initialize wishlist on page load
+            updateWishlist();
+            
+            // Set initial heart states based on wishlist
+            wishlist.forEach(item => {
+                const productWishlistBtn = document.querySelector(`.wishlist-btn[data-id="${item.id}"]`);
+                if (productWishlistBtn) {
+                    productWishlistBtn.querySelector('svg').classList.remove('text-gray-600');
+                    productWishlistBtn.querySelector('svg').classList.add('text-red-500');
+                }
             });
             
             // Intersection Observer for animations
